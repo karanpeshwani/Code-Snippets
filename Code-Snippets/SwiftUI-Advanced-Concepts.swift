@@ -1044,3 +1044,17 @@ class SwiftUIUsageExamples8 {
      - Complex view hierarchies causing performance issues
      - Not handling view lifecycle properly
 */ 
+
+
+
+/*
+ 
+ Topics to cover in deep =>
+ - SwiftUI
+ - UIKit
+ - Networking
+ - Projects and previous tasks
+ - Core Data
+ - Medium DSA
+ 
+ */

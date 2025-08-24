@@ -14,15 +14,15 @@ import Combine
 class ARCBasics9 {
     
     // Strong references (default)
-    var strongReference: Person9?
+    var strongReference: Person?
     
     // Weak references (don't increase retain count)
-    weak var weakReference: Person9?
+    weak var weakReference: Person?
     
     // Unowned references (assume object exists)
-    unowned var unownedReference: Person9
+    unowned var unownedReference: Person
     
-    init(person: Person9) {
+    init(person: Person) {
         self.unownedReference = person
         print("🏗️ ARCBasics initialized")
     }
@@ -35,15 +35,15 @@ class ARCBasics9 {
         print("=== Reference Counting Demo ===")
         
         // Create person (retain count = 1)
-        var person1: Person9? = Person9(name: "Alice")
+        var person1: Person? = Person(name: "Alice")
         print("Person created, retain count: 1")
         
         // Create another strong reference (retain count = 2)
-        var person2: Person9? = person1
+        var person2: Person? = person1
         print("Second strong reference, retain count: 2")
         
         // Create weak reference (retain count still = 2)
-        weak var weakPerson: Person9? = person1
+        weak var weakPerson: Person? = person1
         print("Weak reference created, retain count still: 2")
         
         // Remove first strong reference (retain count = 1)
@@ -58,7 +58,7 @@ class ARCBasics9 {
     }
 }
 
-class Person9 {
+class Person {
     let name: String
     var apartment: Apartment9?
     
@@ -74,7 +74,7 @@ class Person9 {
 
 class Apartment9 {
     let unit: String
-    weak var tenant: Person9? // Weak to break retain cycle
+    weak var tenant: Person? // Weak to break retain cycle
     
     init(unit: String) {
         self.unit = unit
@@ -788,7 +788,7 @@ class MemoryManagementUsageExamples9 {
         print("=== Memory Management Examples ===")
         
         // Basic ARC
-        let arcBasics = ARCBasics9(person: Person9(name: "Test"))
+        let arcBasics = ARCBasics9(person: Person(name: "Test"))
         arcBasics.demonstrateReferenceCounting()
         
         // Retain cycles

@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 // MARK: - GCD Concepts Demo Class
 class GCDConceptsDemo1 {
@@ -22,12 +21,12 @@ class GCDConceptsDemo1 {
         }
         
         // 2. Global Concurrent Queues (Different QoS levels)
-        DispatchQueue.global(qos: .userInitiated).async {
-            print("⚡ User Initiated: High priority background work")
-        }
-        
         DispatchQueue.global(qos: .userInteractive).async {
             print("🔥 User Interactive: Highest priority (animations, event handling)")
+        }
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            print("⚡ User Initiated: High priority background work")
         }
         
         DispatchQueue.global(qos: .default).async {
@@ -297,7 +296,7 @@ class GCDConceptsDemo1 {
         let queue1 = DispatchQueue(label: "queue1")
         let queue2 = DispatchQueue(label: "queue2")
         
-        // WRONG: This can cause deadlock
+        // WRONG: This can cause deadlock if reverse dependecy in there somewhere else in the code.
         // queue1.sync {
         //     queue2.sync {
         //         print("This might deadlock")

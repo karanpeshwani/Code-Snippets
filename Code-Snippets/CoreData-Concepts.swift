@@ -10,9 +10,9 @@ import CoreData
 import UIKit
 
 // MARK: - Core Data Stack
-class CoreDataStack1 {
+class CoreDataStack {
     
-    static let shared = CoreDataStack1()
+    static let shared = CoreDataStack()
     
     private init() {}
     
@@ -193,7 +193,7 @@ extension Tag1 {
 // MARK: - Core Data Manager
 class CoreDataManager1 {
     
-    private let coreDataStack = CoreDataStack1.shared
+    private let coreDataStack = CoreDataStack.shared
     
     // MARK: - User Operations
     func createUser(userID: String, name: String, email: String) -> User2 {
@@ -518,7 +518,7 @@ class CoreDataManager1 {
 // MARK: - Core Data Best Practices
 class CoreDataBestPractices1 {
     
-    private let coreDataStack = CoreDataStack1.shared
+    private let coreDataStack = CoreDataStack.shared
     
     // MARK: - Performance Optimization
     func optimizedFetchWithPrefetching() -> [User2] {

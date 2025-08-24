@@ -90,3 +90,39 @@ func propertyWrapperExample() {
 }
 
 
+@propertyWrapper
+struct Trimmed {
+    private var value: String = ""
+
+    var wrappedValue: String {
+        get {
+            return value
+        }
+        set {
+            // This is where the magic happens!
+            // Every time a new value is set, we trim it.
+            value = newValue.trimmingCharacters(in: .whitespacesAndNewlines)
+        }
+    }
+
+    init(wrappedValue initialValue: String) {
+        // The initial value is also passed through the setter.
+        self.wrappedValue = initialValue
+    }
+}
+
+struct CleanUser {
+    @Trimmed var username: String
+}
+
+func propertyWrapperExample2(){
+    // Usage
+    var cleanUser = CleanUser(username: "  john.doe  ")
+
+    print("Username: '\(cleanUser.username)'")
+    // Output: Username: 'john.doe'
+
+    cleanUser.username = "   jane.doe   "
+    print("New Username: '\(cleanUser.username)'")
+    // Output: New Username: 'jane.doe'
+}
