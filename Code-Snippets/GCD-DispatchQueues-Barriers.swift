@@ -43,7 +43,7 @@ class GCDConceptsDemo1 {
         
         // 3. Custom Queues
         let customSerialQueue = DispatchQueue(label: "com.app.serial-queue")
-        let customConcurrentQueue = DispatchQueue(label: "com.app.concurrent-queue", attributes: .concurrent)
+        let customConcurrentQueue = DispatchQueue(label: "com.app.concurrent-queue", qos: .utility, attributes: .concurrent)
         
         customSerialQueue.async {
             print("🔗 Custom Serial Queue: Tasks execute one after another")
