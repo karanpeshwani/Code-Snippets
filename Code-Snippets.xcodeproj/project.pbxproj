@@ -6,6 +6,20 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		9409BF142FD3FDEC006C27CF /* BasicContainers in Frameworks */ = {isa = PBXBuildFile; productRef = 9409BF132FD3FDEC006C27CF /* BasicContainers */; };
+		9409BF162FD3FDEC006C27CF /* BitCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 9409BF152FD3FDEC006C27CF /* BitCollections */; };
+		9409BF182FD3FDEC006C27CF /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 9409BF172FD3FDEC006C27CF /* Collections */; };
+		9409BF1A2FD3FDEC006C27CF /* ContainersPreview in Frameworks */ = {isa = PBXBuildFile; productRef = 9409BF192FD3FDEC006C27CF /* ContainersPreview */; };
+		9409BF1C2FD3FDEC006C27CF /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = 9409BF1B2FD3FDEC006C27CF /* DequeModule */; };
+		9409BF1E2FD3FDEC006C27CF /* HashTreeCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 9409BF1D2FD3FDEC006C27CF /* HashTreeCollections */; };
+		9409BF202FD3FDEC006C27CF /* HeapModule in Frameworks */ = {isa = PBXBuildFile; productRef = 9409BF1F2FD3FDEC006C27CF /* HeapModule */; };
+		9409BF222FD3FDEC006C27CF /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 9409BF212FD3FDEC006C27CF /* OrderedCollections */; };
+		9409BF242FD3FDEC006C27CF /* SortedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 9409BF232FD3FDEC006C27CF /* SortedCollections */; };
+		9409BF262FD3FDEC006C27CF /* TrailingElementsModule in Frameworks */ = {isa = PBXBuildFile; productRef = 9409BF252FD3FDEC006C27CF /* TrailingElementsModule */; };
+		9409BF282FD3FDEC006C27CF /* _RopeModule in Frameworks */ = {isa = PBXBuildFile; productRef = 9409BF272FD3FDEC006C27CF /* _RopeModule */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		D24D482F2E3B91A100C7BFFF /* Code-Snippets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Code-Snippets.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +37,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9409BF1E2FD3FDEC006C27CF /* HashTreeCollections in Frameworks */,
+				9409BF242FD3FDEC006C27CF /* SortedCollections in Frameworks */,
+				9409BF182FD3FDEC006C27CF /* Collections in Frameworks */,
+				9409BF1A2FD3FDEC006C27CF /* ContainersPreview in Frameworks */,
+				9409BF282FD3FDEC006C27CF /* _RopeModule in Frameworks */,
+				9409BF202FD3FDEC006C27CF /* HeapModule in Frameworks */,
+				9409BF262FD3FDEC006C27CF /* TrailingElementsModule in Frameworks */,
+				9409BF1C2FD3FDEC006C27CF /* DequeModule in Frameworks */,
+				9409BF162FD3FDEC006C27CF /* BitCollections in Frameworks */,
+				9409BF222FD3FDEC006C27CF /* OrderedCollections in Frameworks */,
+				9409BF142FD3FDEC006C27CF /* BasicContainers in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +90,17 @@
 			);
 			name = "Code-Snippets";
 			packageProductDependencies = (
+				9409BF132FD3FDEC006C27CF /* BasicContainers */,
+				9409BF152FD3FDEC006C27CF /* BitCollections */,
+				9409BF172FD3FDEC006C27CF /* Collections */,
+				9409BF192FD3FDEC006C27CF /* ContainersPreview */,
+				9409BF1B2FD3FDEC006C27CF /* DequeModule */,
+				9409BF1D2FD3FDEC006C27CF /* HashTreeCollections */,
+				9409BF1F2FD3FDEC006C27CF /* HeapModule */,
+				9409BF212FD3FDEC006C27CF /* OrderedCollections */,
+				9409BF232FD3FDEC006C27CF /* SortedCollections */,
+				9409BF252FD3FDEC006C27CF /* TrailingElementsModule */,
+				9409BF272FD3FDEC006C27CF /* _RopeModule */,
 			);
 			productName = "Code-Snippets";
 			productReference = D24D482F2E3B91A100C7BFFF /* Code-Snippets.app */;
@@ -94,6 +130,9 @@
 			);
 			mainGroup = D24D48262E3B91A100C7BFFF;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				9409BF122FD3FDEC006C27CF /* XCRemoteSwiftPackageReference "swift-collections" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D24D48302E3B91A100C7BFFF /* Products */;
 			projectDirPath = "";
@@ -322,6 +361,75 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9409BF122FD3FDEC006C27CF /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9409BF132FD3FDEC006C27CF /* BasicContainers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9409BF122FD3FDEC006C27CF /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = BasicContainers;
+		};
+		9409BF152FD3FDEC006C27CF /* BitCollections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9409BF122FD3FDEC006C27CF /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = BitCollections;
+		};
+		9409BF172FD3FDEC006C27CF /* Collections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9409BF122FD3FDEC006C27CF /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = Collections;
+		};
+		9409BF192FD3FDEC006C27CF /* ContainersPreview */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9409BF122FD3FDEC006C27CF /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = ContainersPreview;
+		};
+		9409BF1B2FD3FDEC006C27CF /* DequeModule */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9409BF122FD3FDEC006C27CF /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = DequeModule;
+		};
+		9409BF1D2FD3FDEC006C27CF /* HashTreeCollections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9409BF122FD3FDEC006C27CF /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = HashTreeCollections;
+		};
+		9409BF1F2FD3FDEC006C27CF /* HeapModule */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9409BF122FD3FDEC006C27CF /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = HeapModule;
+		};
+		9409BF212FD3FDEC006C27CF /* OrderedCollections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9409BF122FD3FDEC006C27CF /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = OrderedCollections;
+		};
+		9409BF232FD3FDEC006C27CF /* SortedCollections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9409BF122FD3FDEC006C27CF /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = SortedCollections;
+		};
+		9409BF252FD3FDEC006C27CF /* TrailingElementsModule */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9409BF122FD3FDEC006C27CF /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = TrailingElementsModule;
+		};
+		9409BF272FD3FDEC006C27CF /* _RopeModule */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9409BF122FD3FDEC006C27CF /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = _RopeModule;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D24D48272E3B91A100C7BFFF /* Project object */;
 }
