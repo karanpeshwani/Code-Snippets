@@ -37,7 +37,7 @@ class Solution {
                     let originalChar = chars[i]
 
                     for j in 0..<26 {
-                        let newChar = Character(UnicodeScalar(aAscii + UInt8(j)))
+                        let newChar = Character(UnicodeScalar(aAscii + UInt8(j)))   //IMPORTANT
                         if newChar == originalChar { continue }
 
                         chars[i] = newChar
