@@ -3,6 +3,7 @@
 // https://leetcode.com/problems/number-of-islands-ii/
 //
 // Time Complexity: O(k * alpha(mn)) where k is the number of positions. We use Union-Find with path compression.
+// alpha(mn) => inverse Ackermann function. It is almost constant for any value.
 // Space Complexity: O(m * n) for the Union-Find parent array.
 
 class Solution {
