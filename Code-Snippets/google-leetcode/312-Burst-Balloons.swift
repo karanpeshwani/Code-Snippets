@@ -2,9 +2,11 @@
 // Link: https://leetcode.com/problems/burst-balloons/
 //
 // Time Complexity: O(N^3), where N is the number of balloons.
-// Explanation: The dynamic programming table has N^2 states, and for each state, we iterate through up to N possible balloons to burst last.
+// Explanation: There are O(N^2) possible states (subarrays defined by left and right pointers).
+// For each state, we iterate through up to N possible balloons to burst last.
 // Space Complexity: O(N^2)
-// Explanation: The DP table stores the maximum coins for every possible subarray of balloons.
+// Explanation: The memoization table stores the maximum coins for every possible subarray of balloons,
+// plus the recursion call stack which goes up to O(N) deep.
 
 class Solution {
     func maxCoins(_ nums: [Int]) -> Int {
@@ -12,24 +14,41 @@ class Solution {
         var balloons = [1]
         balloons.append(contentsOf: nums)
         balloons.append(1)
-        
+
         let n = balloons.count
-        // dp[i][j] represents the max coins obtained by bursting balloons strictly between indices i and j
-        var dp = Array(repeating: Array(repeating: 0, count: n), count: n)
-        
-        // len is the length of the subarray we are currently considering
-        for len in 2..<n {
-            for left in 0..<(n - len) {
-                let right = left + len
-                
-                // i is the balloon we choose to burst LAST in the range (left, right)
-                for i in (left + 1)..<right {
-                    let coins = balloons[left] * balloons[i] * balloons[right]
-                    dp[left][right] = max(dp[left][right], coins + dp[left][i] + dp[i][right])
-                }
+
+        // memo[i][j] represents the max coins obtained by bursting balloons strictly between indices i and j.
+        // We initialize with -1 to differentiate between an uncomputed state and a computed state that yields 0 coins.
+        var memo = Array(repeating: Array(repeating: -1, count: n), count: n)
+
+        // Helper recursive function
+        func burst(_ left: Int, _ right: Int) -> Int {
+            // Base case: If there are no balloons strictly between left and right, we can't burst anything.
+            if left + 1 >= right {
+                return 0
             }
+
+            // If we have already computed this subproblem, return the cached result.
+            if memo[left][right] != -1 {
+                return memo[left][right]
+            }
+
+            var maxCoins = 0
+
+            // i is the balloon we choose to burst LAST in the range (left, right)
+            for i in (left + 1)..<right {
+                let coins = balloons[left] * balloons[i] * balloons[right]
+                // Recursively solve for the left and right subproblems
+                let totalCoins = coins + burst(left, i) + burst(i, right)
+                maxCoins = max(maxCoins, totalCoins)
+            }
+
+            // Cache the result before returning
+            memo[left][right] = maxCoins
+            return maxCoins
         }
-        
-        return dp[0][n - 1]
+
+        // We want the max coins obtained by bursting balloons strictly between the padded 1s
+        return burst(0, n - 1)
     }
 }
