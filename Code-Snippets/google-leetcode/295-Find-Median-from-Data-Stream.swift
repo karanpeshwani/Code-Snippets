@@ -10,38 +10,33 @@ import Collections
 
 class MedianFinder {
     // maxHeap stores the smaller half of the numbers.
-    // Note: Heap in swift-collections is a Min-Heap by default.
-    // We insert negated values into maxHeap to simulate a Max-Heap behavior.
+    // Swift's Heap is inherently a Min-Max Heap, allowing direct access to the maximum element.
     private var maxHeap = Heap<Int>()
-    
+
     // minHeap stores the larger half of the numbers.
     private var minHeap = Heap<Int>()
-    
+
     init() {}
-    
+
     func addNum(_ num: Int) {
-        maxHeap.insert(-num)
-        
-        // Ensure every element in maxHeap is less than or equal to elements in minHeap
-        if let maxTop = maxHeap.min, let minTop = minHeap.min {
-            if -maxTop > minTop {
-                minHeap.insert(-maxHeap.removeMin())
-            }
-        }
-        
-        // Balance sizes: maxHeap can have at most one more element than minHeap
-        if maxHeap.count > minHeap.count + 1 {
-            minHeap.insert(-maxHeap.removeMin())
-        } else if minHeap.count > maxHeap.count {
-            maxHeap.insert(-minHeap.removeMin())
+        // 1. Add the new number to the maxHeap (smaller half)
+        maxHeap.insert(num)
+
+        // 2. Guarantee that maxHeap elements are <= minHeap elements
+        // by pushing the largest element of the smaller half into the larger half
+        minHeap.insert(maxHeap.removeMax())
+
+        // 3. Balance sizes: maxHeap should hold the extra element if the total count is odd
+        if minHeap.count > maxHeap.count {
+            maxHeap.insert(minHeap.removeMin())
         }
     }
-    
+
     func findMedian() -> Double {
         if maxHeap.count > minHeap.count {
-            return Double(-maxHeap.min!)
+            return Double(maxHeap.max!)
         } else {
-            return (Double(-maxHeap.min!) + Double(minHeap.min!)) / 2.0
+            return (Double(maxHeap.max!) + Double(minHeap.min!)) / 2.0
         }
     }
 }
