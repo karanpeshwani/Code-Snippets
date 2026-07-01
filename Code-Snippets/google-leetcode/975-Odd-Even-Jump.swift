@@ -1,3 +1,4 @@
+//Again
 // 975. Odd Even Jump
 // https://leetcode.com/problems/odd-even-jump
 //
@@ -10,71 +11,51 @@
 class Solution {
     func oddEvenJumps(_ arr: [Int]) -> Int {
         let n = arr.count
-        if n <= 1 { return n }
-        
-        // Arrays to store the next index to jump to for odd and even jumps
-        var oddNext = [Int?](repeating: nil, count: n)
-        var evenNext = [Int?](repeating: nil, count: n)
-        
-        // Create an array of indices
-        let indices = Array(0..<n)
-        
-        // Sort indices for odd jumps: values ascending, indices ascending
-        let oddSortedIndices = indices.sorted {
-            if arr[$0] != arr[$1] {
-                return arr[$0] < arr[$1]
+        let nextJustGreaterIndex = findNextJustGreaterIndex(arr.enumerated().sorted { $0.1 < $1.1 })
+        let nextJustSmallerIndex = findNextJustGreaterIndex(arr.enumerated().sorted { $0.1 > $1.1 })
+
+        var oddJumpGood: [Bool] = [Bool](repeating: false, count: n)
+        var evenJumpGood: [Bool] = [Bool](repeating: false, count: n)
+
+        //Base conditions
+        oddJumpGood[n - 1] = true
+        evenJumpGood[n - 1] = true
+
+        for i in (0..<n-1).reversed() {
+            let nextGreaterIndex = nextJustGreaterIndex[i]
+            let nextSmallerIndex = nextJustSmallerIndex[i]
+
+            if nextGreaterIndex != -1 {
+                oddJumpGood[i] = evenJumpGood[nextGreaterIndex]
             }
-            return $0 < $1
-        }
-        
-        // Monotonic stack to find the next valid index (which appears after current index)
-        var stack = [Int]()
-        for i in oddSortedIndices {
-            while !stack.isEmpty && stack.last! < i {
-                oddNext[stack.removeLast()] = i
-            }
-            stack.append(i)
-        }
-        
-        // Sort indices for even jumps: values descending, indices ascending
-        let evenSortedIndices = indices.sorted {
-            if arr[$0] != arr[$1] {
-                return arr[$0] > arr[$1]
-            }
-            return $0 < $1
-        }
-        
-        // Monotonic stack to find the next valid index
-        stack.removeAll()
-        for i in evenSortedIndices {
-            while !stack.isEmpty && stack.last! < i {
-                evenNext[stack.removeLast()] = i
-            }
-            stack.append(i)
-        }
-        
-        // DP arrays to store if we can reach the end using odd/even jump from index i
-        var higher = [Bool](repeating: false, count: n)
-        var lower = [Bool](repeating: false, count: n)
-        
-        // Base case: we can always reach the end from the last element
-        higher[n - 1] = true
-        lower[n - 1] = true
-        var goodIndicesCount = 1
-        
-        // Iterate backwards from the second to last element
-        for i in stride(from: n - 2, through: 0, by: -1) {
-            if let nextOdd = oddNext[i] {
-                higher[i] = lower[nextOdd]
-            }
-            if let nextEven = evenNext[i] {
-                lower[i] = higher[nextEven]
-            }
-            if higher[i] {
-                goodIndicesCount += 1
+
+            if nextSmallerIndex != -1 {
+                evenJumpGood[i] = oddJumpGood[nextSmallerIndex]
             }
         }
-        
-        return goodIndicesCount
+
+        var result: Int = 0
+
+        for boolean in oddJumpGood {
+            if boolean {
+                result += 1
+            }
+        }
+
+        return result
+    }
+
+    private func findNextJustGreaterIndex(_ arr: [EnumeratedSequence<[Int]>.Iterator.Element]) -> [Int] {
+        var result: [Int] = [Int](repeating: -1, count: arr.count)
+        var stack: [Int] = []
+
+        for (index, _) in arr {
+            while !stack.isEmpty && stack.last! < index {
+                result[stack.popLast()!] = index
+            }
+            stack.append(index)
+        }
+
+        return result
     }
 }
