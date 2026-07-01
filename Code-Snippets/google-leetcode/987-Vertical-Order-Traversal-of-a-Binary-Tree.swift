@@ -19,45 +19,56 @@
 //     }
 // }
 
+private class TreeNodeWrapper {
+    let x: Int
+    let y: Int
+    let treeNode: TreeNode
+
+    init(_ treeNode: TreeNode, _ x: Int, _ y: Int) {
+        self.x = x
+        self.y = y
+        self.treeNode = treeNode
+    }
+}
+
 class Solution {
+
+    private var columnNodes: [[TreeNodeWrapper]] = Array(repeating: [], count: 2000)
+
     func verticalTraversal(_ root: TreeNode?) -> [[Int]] {
-        var nodes = [(col: Int, row: Int, val: Int)]()
-        
-        func dfs(_ node: TreeNode?, _ col: Int, _ row: Int) {
-            guard let node = node else { return }
-            nodes.append((col, row, node.val))
-            dfs(node.left, col - 1, row + 1)
-            dfs(node.right, col + 1, row + 1)
-        }
-        
-        dfs(root, 0, 0)
-        
-        // Sort by column, then row, then value
-        nodes.sort {
-            if $0.col != $1.col { return $0.col < $1.col }
-            if $0.row != $1.row { return $0.row < $1.row }
-            return $0.val < $1.val
-        }
-        
-        var res = [[Int]]()
-        var lastCol = Int.min
-        var currColList = [Int]()
-        
-        for node in nodes {
-            if node.col != lastCol {
-                if !currColList.isEmpty {
-                    res.append(currColList)
-                    currColList = []
-                }
-                lastCol = node.col
+        var q: Deque<TreeNodeWrapper> = Deque()
+        q.append(TreeNodeWrapper(root!, 0, 0))
+
+        while !q.isEmpty {
+            let top = q.removeFirst()
+            let col = top.x + 1000
+
+            columnNodes[col].append(top)
+
+            if let leftChild = top.treeNode.left {
+                q.append(TreeNodeWrapper(leftChild, top.x - 1, top.y + 1))
             }
-            currColList.append(node.val)
+            if let rightChild = top.treeNode.right {
+                q.append(TreeNodeWrapper(rightChild, top.x + 1, top.y + 1))
+            }
         }
-        
-        if !currColList.isEmpty {
-            res.append(currColList)
+
+        var result: [[Int]] = []
+
+        for columnArray in columnNodes {
+            if !columnArray.isEmpty {
+                let temp = columnArray.sorted {
+                    if $0.y == $1.y {
+                        return $0.treeNode.val < $1.treeNode.val
+                    }
+                    return $0.y < $1.y
+                }.map {
+                    $0.treeNode.val
+                }
+                result.append(temp)
+            }
         }
-        
-        return res
+
+        return result
     }
 }
