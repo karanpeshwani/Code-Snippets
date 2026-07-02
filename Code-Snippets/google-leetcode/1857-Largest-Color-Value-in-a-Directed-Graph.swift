@@ -6,6 +6,87 @@
 // to update the DP state of its neighbors, which is effectively O(1). Thus, the time complexity is linear.
 // Space Complexity: O(V + E) for storing the adjacency list and in-degrees. The DP array takes O(V * 26) = O(V) space.
 
+//Approach 1: DFS:
+class Solution {
+
+    private var nodeColorMaxFreq: [[Int]?] = [] // Memo: Max color freqs per node
+    private var n: Int = 0
+    private var graph: [[Int]] = []             // Adjacency list
+    private var indegree: [Int] = []            // Incoming edge count
+    private var colors: [Character] = []        // Node colors array
+
+    private func DFS(_ currentNode: Int, _ visited: inout [Bool]) -> Bool {
+        if visited[currentNode] { return true } // Cycle detected (back-edge)
+
+        if nodeColorMaxFreq[currentNode] != nil { return false } // Already processed
+
+        visited[currentNode] = true
+        nodeColorMaxFreq[currentNode] = Array(repeating: 0, count: 26)
+
+        for neigh in graph[currentNode] {
+            if DFS(neigh, &visited) { return true } // Propagate cycle up
+
+            // DP: Accumulate max color frequencies from downstream paths
+            for i in 0..<26 {
+                nodeColorMaxFreq[currentNode]![i] = max(
+                    nodeColorMaxFreq[currentNode]![i], 
+                    nodeColorMaxFreq[neigh]![i]
+                )
+            }
+        }
+
+        visited[currentNode] = false // Backtrack recursion stack
+
+        // Add current node's color to its own frequency tally
+        let currentCharIndex = Int(colors[currentNode].asciiValue! - Character("a").asciiValue!)
+        nodeColorMaxFreq[currentNode]![currentCharIndex] += 1
+
+        return false
+    }
+
+    func largestPathValue(_ colors: String, _ edges: [[Int]]) -> Int {
+        self.n = colors.count
+        self.colors = Array(colors)
+        self.nodeColorMaxFreq = Array(repeating: nil, count: n)
+        self.indegree = Array(repeating: 0, count: n)
+        self.graph = Array(repeating: [], count: n)
+
+        // 1. Build graph & calculate indegrees
+        for edge in edges {
+            graph[edge[0]].append(edge[1])
+            indegree[edge[1]] += 1
+        }
+
+        var result: Int = 1
+
+        // 2. DFS from valid starting points (indegree == 0)
+        for i in 0..<n {
+            if indegree[i] == 0 {
+                var visited: [Bool] = Array(repeating: false, count: n)
+                
+                if DFS(i, &visited) { return -1 } // Graph has a cycle
+
+                // Update global max with results from this path
+                for freq in nodeColorMaxFreq[i]! {
+                    result = max(result, freq)
+                }
+            }
+        }
+
+        // 3. Catch isolated cycles (nodes that were never reached)
+        for element in nodeColorMaxFreq {
+            guard let element else { return -1 }
+        }
+
+        return result
+    }
+}
+
+
+
+
+
+//Approach 2:
 class Solution {
     func largestPathValue(_ colors: String, _ edges: [[Int]]) -> Int {
         let n = colors.count
