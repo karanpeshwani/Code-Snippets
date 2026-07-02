@@ -27,7 +27,7 @@ class FileSystem {
     
     func createPath(_ path: String, _ value: Int) -> Bool {
         // Remove empty components resulting from the leading slash
-        let components = path.split(separator: "/").map { String($0) }
+        let components = path.split(separator: "/").map { String($0) } //IMPORTANT
         guard !components.isEmpty else { return false }
         
         var curr = root
