@@ -1,3 +1,4 @@
+//Again
 // 1944. Number of Visible People in a Queue
 // https://leetcode.com/problems/number-of-visible-people-in-a-queue/
 //
@@ -6,6 +7,37 @@
 // and popped from the monotonic stack at most once, making the overall time complexity linear.
 // Space Complexity: O(N) in the worst case (e.g., if heights are sorted in descending order) 
 // to store the heights in the monotonic stack.
+
+//Approach 1:
+
+class Solution {
+    func canSeePersonsCount(_ heights: [Int]) -> [Int] {
+        let n = heights.count
+        var stack: [Int] = []
+        var result: [Int] = Array(repeating: 0, count: n)
+
+        for i in 0..<n {
+
+            while !stack.isEmpty && heights[i] > heights[stack.last!] {
+                let top = stack.removeLast()
+                result[top] += 1
+            }
+
+            if !stack.isEmpty {
+                let top = stack.last!
+                result[top] += 1
+            }
+
+            stack.append(i)
+        }
+
+        return result
+    }
+}
+
+
+
+//Approach 2:
 
 class Solution {
     func canSeePersonsCount(_ heights: [Int]) -> [Int] {
