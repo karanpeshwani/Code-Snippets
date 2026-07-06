@@ -1,18 +1,20 @@
 // 84. Largest Rectangle in Histogram
 // https://leetcode.com/problems/largest-rectangle-in-histogram
-//
-// Intuition/Explanation:
-// We can use a monotonic increasing stack to efficiently find the largest rectangle.
-// The stack will store the indices of the histogram bars such that their heights are strictly increasing.
-// We iterate through the array. If we see a bar smaller than the bar at the top of the stack,
-// it means the bar at the top of the stack cannot be extended further to the right.
-// So, we pop the top index, calculate the area with it as the smallest height, and update our max area.
-// The width of this rectangle is `current index - new top of stack - 1`. 
-// If the stack is empty after popping, the width is just the `current index`.
-// We append a dummy 0-height bar at the end to ensure all remaining bars in the stack are processed.
-//
-// Time Complexity: O(N), where N is the number of bars. Every bar is pushed and popped from the stack at most once.
-// Space Complexity: O(N) to store the indices in the stack in the worst case (e.g., strictly increasing array).
+
+/*
+ Intuition/Explanation:
+ We can use a monotonic increasing stack to efficiently find the largest rectangle.
+ The stack will store the indices of the histogram bars such that their heights are strictly increasing.
+ We iterate through the array. If we see a bar smaller than the bar at the top of the stack,
+ it means the bar at the top of the stack cannot be extended further to the right.
+ So, we pop the top index, calculate the area with it as the smallest height, and update our max area.
+ The width of this rectangle is `current index - new top of stack - 1`. 
+ If the stack is empty after popping, the width is just the `current index`.
+ We append a dummy 0-height bar at the end to ensure all remaining bars in the stack are processed.
+
+ Time Complexity: O(N), where N is the number of bars. Every bar is pushed and popped from the stack at most once.
+ Space Complexity: O(N) to store the indices in the stack in the worst case (e.g., strictly increasing array).
+*/
 
 class Solution {
     func largestRectangleArea(_ heights: [Int]) -> Int {

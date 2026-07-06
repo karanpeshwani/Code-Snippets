@@ -1,15 +1,17 @@
 // 2402. Meeting Rooms III
 // https://leetcode.com/problems/meeting-rooms-iii
-//
-// Time Complexity: O(M log M + M log N)
-//   - Sorting the meetings array takes O(M log M) where M is the number of meetings.
-//   - For each meeting, we might push and pop from the heaps. In the worst case, each meeting 
-//     takes O(log N) where N is the number of rooms.
-//   - Overall time complexity is dominated by these heap operations and sorting.
-// Space Complexity: O(N + M)
-//   - The availableRooms and occupiedRooms heaps store at most N elements.
-//   - The sorted meetings array takes O(M) space.
-//   - Overall space complexity is O(N + M).
+
+/*
+ Time Complexity: O(M log M + M log N)
+   - Sorting the meetings array takes O(M log M) where M is the number of meetings.
+   - For each meeting, we might push and pop from the heaps. In the worst case, each meeting 
+     takes O(log N) where N is the number of rooms.
+   - Overall time complexity is dominated by these heap operations and sorting.
+ Space Complexity: O(N + M)
+   - The availableRooms and occupiedRooms heaps store at most N elements.
+   - The sorted meetings array takes O(M) space.
+   - Overall space complexity is O(N + M).
+*/
 
 struct Heap<T> {
     private var elements: [T]

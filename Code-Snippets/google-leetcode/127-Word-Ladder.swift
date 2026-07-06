@@ -1,9 +1,11 @@
 // 127. Word Ladder
 // https://leetcode.com/problems/word-ladder/
-//
-// Time Complexity: O(M^2 * N), where M is the length of each word and N is the total number of words in the wordList.
-// For each word, we change every character (M times) to 26 different letters and create a new string (takes O(M)), giving O(M^2) per word.
-// Space Complexity: O(M * N), since we store strings for our BFS queue and word set. Storing N strings of length M requires O(M * N) space.
+
+/*
+ Time Complexity: O(M^2 * N), where M is the length of each word and N is the total number of words in the wordList.
+ For each word, we change every character (M times) to 26 different letters and create a new string (takes O(M)), giving O(M^2) per word.
+ Space Complexity: O(M * N), since we store strings for our BFS queue and word set. Storing N strings of length M requires O(M * N) space.
+*/
 
 class Solution {
     func ladderLength(_ beginWord: String, _ endWord: String, _ wordList: [String]) -> Int {

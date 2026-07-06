@@ -2,10 +2,12 @@
 // 410-Split-Array-Largest-Sum.swift
 // 410. Split Array Largest Sum
 // https://leetcode.com/problems/split-array-largest-sum/
-//
-// Time Complexity: O(N * log(Sum)), where N is the length of nums and Sum is the sum of all elements.
-// Binary searching the answer takes O(log(Sum)) and each check takes O(N).
-// Space Complexity: O(1), as we only use a few variables.
+
+/*
+ Time Complexity: O(N * log(Sum)), where N is the length of nums and Sum is the sum of all elements.
+ Binary searching the answer takes O(log(Sum)) and each check takes O(N).
+ Space Complexity: O(1), as we only use a few variables.
+*/
 
 class Solution {
     func splitArray(_ nums: [Int], _ k: Int) -> Int {

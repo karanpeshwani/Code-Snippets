@@ -1,8 +1,10 @@
 // 124. Binary Tree Maximum Path Sum
 // https://leetcode.com/problems/binary-tree-maximum-path-sum/
-//
-// Time Complexity: O(N), where N is the number of nodes in the binary tree. We visit each node exactly once during our post-order traversal to compute the maximum gain from each subtree.
-// Space Complexity: O(H), where H is the height of the tree. This space is used by the recursion call stack. In the worst case (skewed tree), H = N, leading to O(N) space. For a perfectly balanced tree, H = log(N).
+
+/*
+ Time Complexity: O(N), where N is the number of nodes in the binary tree. We visit each node exactly once during our post-order traversal to compute the maximum gain from each subtree.
+ Space Complexity: O(H), where H is the height of the tree. This space is used by the recursion call stack. In the worst case (skewed tree), H = N, leading to O(N) space. For a perfectly balanced tree, H = log(N).
+*/
 
 /**
  * Definition for a binary tree node.

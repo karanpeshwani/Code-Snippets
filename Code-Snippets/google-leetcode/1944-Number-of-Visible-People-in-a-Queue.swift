@@ -1,12 +1,14 @@
 //Again
 // 1944. Number of Visible People in a Queue
 // https://leetcode.com/problems/number-of-visible-people-in-a-queue/
-//
-// Time Complexity: O(N), where N is the number of people in the queue. 
-// We iterate through the array once from right to left. Each person's height is pushed 
-// and popped from the monotonic stack at most once, making the overall time complexity linear.
-// Space Complexity: O(N) in the worst case (e.g., if heights are sorted in descending order) 
-// to store the heights in the monotonic stack.
+
+/*
+ Time Complexity: O(N), where N is the number of people in the queue. 
+ We iterate through the array once from right to left. Each person's height is pushed 
+ and popped from the monotonic stack at most once, making the overall time complexity linear.
+ Space Complexity: O(N) in the worst case (e.g., if heights are sorted in descending order) 
+ to store the heights in the monotonic stack.
+*/
 
 //Approach 1:
 

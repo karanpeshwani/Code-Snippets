@@ -2,10 +2,12 @@
 // 2163-Minimum-Difference-in-Sums-After-Removal-of-Elements.swift
 // 2163. Minimum Difference in Sums After Removal of Elements
 // https://leetcode.com/problems/minimum-difference-in-sums-after-removal-of-elements/
-//
-// Time Complexity: O(N log N) using heaps (priority queues) where N is the length of the array after removal.
-// We process elements from left and right maintaining a heap of size N.
-// Space Complexity: O(N) to store prefixes, suffixes, and the elements in the heap.
+
+/*
+ Time Complexity: O(N log N) using heaps (priority queues) where N is the length of the array after removal.
+ We process elements from left and right maintaining a heap of size N.
+ Space Complexity: O(N) to store prefixes, suffixes, and the elements in the heap.
+*/
 
 import Collections
 

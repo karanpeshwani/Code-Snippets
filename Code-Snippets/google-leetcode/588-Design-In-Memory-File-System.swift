@@ -1,13 +1,15 @@
 //Again
 // 588. Design In-Memory File System
 // https://leetcode.com/problems/design-in-memory-file-system/
-//
-// Time Complexity: 
-//   - ls: O(L + K log K), where L is the path length and K is the number of items in the directory (sorting takes K log K).
-//   - mkdir: O(L), where L is the length of the path. We split the path and traverse/create nodes.
-//   - addContentToFile: O(L + C), where L is the path length and C is the length of the content being appended.
-//   - readContentFromFile: O(L + C), where L is the path length and C is the content length to be returned.
-// Space Complexity: O(N * (L + C)) in the worst case, where N is the total number of files/directories, L is the average name length, and C is the average content length.
+
+/*
+ Time Complexity: 
+   - ls: O(L + K log K), where L is the path length and K is the number of items in the directory (sorting takes K log K).
+   - mkdir: O(L), where L is the length of the path. We split the path and traverse/create nodes.
+   - addContentToFile: O(L + C), where L is the path length and C is the length of the content being appended.
+   - readContentFromFile: O(L + C), where L is the path length and C is the content length to be returned.
+ Space Complexity: O(N * (L + C)) in the worst case, where N is the total number of files/directories, L is the average name length, and C is the average content length.
+*/
 
 class FileSystem {
     

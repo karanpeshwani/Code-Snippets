@@ -2,9 +2,11 @@
 // 2092-Find-All-People-With-Secret.swift
 // 2092. Find All People With Secret
 // https://leetcode.com/problems/find-all-people-with-secret/
-//
-// Time Complexity: O(M log M + M) where M is the number of meetings. Sorting takes M log M, and Union-Find operations take almost O(1) time per meeting.
-// Space Complexity: O(N + M) for the Union-Find parent array and temporary meeting groups.
+
+/*
+ Time Complexity: O(M log M + M) where M is the number of meetings. Sorting takes M log M, and Union-Find operations take almost O(1) time per meeting.
+ Space Complexity: O(N + M) for the Union-Find parent array and temporary meeting groups.
+*/
 
 class Solution {
     func findAllPeople(_ n: Int, _ meetings: [[Int]], _ firstPerson: Int) -> [Int] {

@@ -1,9 +1,11 @@
 //Again
 // 327. Count of Range Sum
 // https://leetcode.com/problems/count-of-range-sum/
-//
-// Time Complexity: O(N log N), where N is the length of the array. We use a divide-and-conquer approach (Merge Sort) on the prefix sum array. The work done at each level of the recursion tree is O(N) for finding valid ranges and merging, and there are log N levels.
-// Space Complexity: O(N), for storing the prefix sum array and the temporary array used during the merge step.
+
+/*
+ Time Complexity: O(N log N), where N is the length of the array. We use a divide-and-conquer approach (Merge Sort) on the prefix sum array. The work done at each level of the recursion tree is O(N) for finding valid ranges and merging, and there are log N levels.
+ Space Complexity: O(N), for storing the prefix sum array and the temporary array used during the merge step.
+*/
 
 class Solution {
     func countRangeSum(_ nums: [Int], _ lower: Int, _ upper: Int) -> Int {

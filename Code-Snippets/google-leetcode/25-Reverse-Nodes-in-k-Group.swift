@@ -1,19 +1,21 @@
 //Again
 // 25. Reverse Nodes in k-Group
 // https://leetcode.com/problems/reverse-nodes-in-k-group
-//
-// Time Complexity: O(N)
-// Space Complexity: O(1)
-//
-// Explanation:
-// We reverse the linked list in groups of `k`.
-// We use a dummy node to simplify the handling of the head of the list.
-// In a loop, we first check if there are at least `k` nodes remaining to be reversed. 
-// If there are, we reverse this group of `k` nodes using standard pointer manipulation (prev, current, next).
-// The `groupPrev` pointer always points to the node just before the current group being reversed.
-// After reversing a group, the original first node of the group becomes the last node, so we update `groupPrev` to this node.
-// If there are fewer than `k` nodes left, we break the loop and leave them as they are.
-// Space complexity is O(1) as we are only using a few pointers, and Time complexity is O(N) since each node is visited at most twice.
+
+/*
+ Time Complexity: O(N)
+ Space Complexity: O(1)
+
+ Explanation:
+ We reverse the linked list in groups of `k`.
+ We use a dummy node to simplify the handling of the head of the list.
+ In a loop, we first check if there are at least `k` nodes remaining to be reversed. 
+ If there are, we reverse this group of `k` nodes using standard pointer manipulation (prev, current, next).
+ The `groupPrev` pointer always points to the node just before the current group being reversed.
+ After reversing a group, the original first node of the group becomes the last node, so we update `groupPrev` to this node.
+ If there are fewer than `k` nodes left, we break the loop and leave them as they are.
+ Space complexity is O(1) as we are only using a few pointers, and Time complexity is O(N) since each node is visited at most twice.
+*/
 
 public class ListNode {
     public var val: Int

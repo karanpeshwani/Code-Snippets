@@ -1,12 +1,14 @@
 // 1639. Number of Ways to Form a Target String Given a Dictionary
 // https://leetcode.com/problems/number-of-ways-to-form-a-target-string-given-a-dictionary
-//
-// Time Complexity: O(N * W + W * T), where N is the number of words, W is the length of each word, 
-// and T is the length of the target string. 
-// We first build a frequency table for each column across all words in O(N * W) time.
-// Then, we use a DP approach iterating over the columns (W) and the target string length (T) in O(W * T) time.
-// Space Complexity: O(W * 26 + T) = O(W + T). The frequency table takes O(W * 26) space. 
-// The DP array takes O(T) space.
+
+/*
+ Time Complexity: O(N * W + W * T), where N is the number of words, W is the length of each word, 
+ and T is the length of the target string. 
+ We first build a frequency table for each column across all words in O(N * W) time.
+ Then, we use a DP approach iterating over the columns (W) and the target string length (T) in O(W * T) time.
+ Space Complexity: O(W * 26 + T) = O(W + T). The frequency table takes O(W * 26) space. 
+ The DP array takes O(T) space.
+*/
 
 class Solution {
     func numWays(_ words: [String], _ target: String) -> Int {

@@ -1,9 +1,11 @@
 //Again
 // 862. Shortest Subarray with Sum at Least K
 // https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k
-//
-// Time Complexity: O(N), where N is the number of elements in the array. We compute the prefix sums in O(N) time and then each index is pushed and popped from the monotonic deque at most once.
-// Space Complexity: O(N), for storing the prefix sums and the monotonic deque.
+
+/*
+ Time Complexity: O(N), where N is the number of elements in the array. We compute the prefix sums in O(N) time and then each index is pushed and popped from the monotonic deque at most once.
+ Space Complexity: O(N), for storing the prefix sums and the monotonic deque.
+*/
 
 import Collections
 

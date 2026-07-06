@@ -1,8 +1,10 @@
 // 68. Text Justification
 // https://leetcode.com/problems/text-justification
-//
-// Time Complexity: O(N), where N is the total number of characters in all words. We process each word and character to pack them into lines and then justify each line.
-// Space Complexity: O(N), for storing the justified lines in the result array. A single line stores at most O(maxWidth) characters, and we store the result.
+
+/*
+ Time Complexity: O(N), where N is the total number of characters in all words. We process each word and character to pack them into lines and then justify each line.
+ Space Complexity: O(N), for storing the justified lines in the result array. A single line stores at most O(maxWidth) characters, and we store the result.
+*/
 
 class Solution {
     func fullJustify(_ words: [String], _ maxWidth: Int) -> [String] {

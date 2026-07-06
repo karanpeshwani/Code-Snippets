@@ -1,8 +1,10 @@
 // 1192. Critical Connections in a Network
 // https://leetcode.com/problems/critical-connections-in-a-network/
-//
-// Time Complexity: O(V + E), where V is the number of servers (n) and E is the number of connections. We build the adjacency list in O(E) time and perform a single Depth First Search (DFS) which visits each vertex and edge once in O(V + E) time.
-// Space Complexity: O(V + E) to store the graph as an adjacency list. The `disc` and `low` arrays each take O(V) space, and the recursion call stack can go up to O(V) deep in the worst case (e.g., a linear graph).
+
+/*
+ Time Complexity: O(V + E), where V is the number of servers (n) and E is the number of connections. We build the adjacency list in O(E) time and perform a single Depth First Search (DFS) which visits each vertex and edge once in O(V + E) time.
+ Space Complexity: O(V + E) to store the graph as an adjacency list. The `disc` and `low` arrays each take O(V) space, and the recursion call stack can go up to O(V) deep in the worst case (e.g., a linear graph).
+*/
 
 class Solution {
     func criticalConnections(_ n: Int, _ connections: [[Int]]) -> [[Int]] {

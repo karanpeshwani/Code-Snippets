@@ -2,9 +2,11 @@
 // 502-IPO.swift
 // 502. IPO
 // https://leetcode.com/problems/ipo/
-//
-// Time Complexity: O(N log N) to sort projects by capital and O(K log N) to extract max from the priority queue. Total O((N + K) log N).
-// Space Complexity: O(N) for storing the projects and the priority queue.
+
+/*
+ Time Complexity: O(N log N) to sort projects by capital and O(K log N) to extract max from the priority queue. Total O((N + K) log N).
+ Space Complexity: O(N) for storing the projects and the priority queue.
+*/
 
 import Collections
 

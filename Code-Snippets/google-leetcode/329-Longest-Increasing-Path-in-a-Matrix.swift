@@ -1,10 +1,12 @@
 // 329. Longest Increasing Path in a Matrix
 // Link: https://leetcode.com/problems/longest-increasing-path-in-a-matrix/
-//
-// Time Complexity: O(M * N), where M is the number of rows and N is the number of columns.
-// Explanation: Thanks to memoization, each cell in the matrix is evaluated at most once. The DFS from a cell explores up to 4 neighbors in O(1) time.
-// Space Complexity: O(M * N)
-// Explanation: The memoization table requires O(M * N) space. The recursion call stack also requires up to O(M * N) space in the worst case.
+
+/*
+ Time Complexity: O(M * N), where M is the number of rows and N is the number of columns.
+ Explanation: Thanks to memoization, each cell in the matrix is evaluated at most once. The DFS from a cell explores up to 4 neighbors in O(1) time.
+ Space Complexity: O(M * N)
+ Explanation: The memoization table requires O(M * N) space. The recursion call stack also requires up to O(M * N) space in the worst case.
+*/
 
 class Solution {
     func longestIncreasingPath(_ matrix: [[Int]]) -> Int {

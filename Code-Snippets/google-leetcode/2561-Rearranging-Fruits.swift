@@ -1,9 +1,11 @@
 // 2561-Rearranging-Fruits.swift
 // 2561. Rearranging Fruits
 // https://leetcode.com/problems/rearranging-fruits/
-//
-// Time Complexity: O(N log N) to sort the counts and the arrays of elements to swap.
-// Space Complexity: O(N) to store frequencies and swap arrays.
+
+/*
+ Time Complexity: O(N log N) to sort the counts and the arrays of elements to swap.
+ Space Complexity: O(N) to store frequencies and swap arrays.
+*/
 
 class Solution {
     func minCost(_ basket1: [Int], _ basket2: [Int]) -> Int {

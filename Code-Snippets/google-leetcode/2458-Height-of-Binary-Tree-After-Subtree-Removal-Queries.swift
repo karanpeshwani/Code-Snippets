@@ -1,15 +1,17 @@
 // 2458. Height of Binary Tree After Subtree Removal Queries
 // https://leetcode.com/problems/height-of-binary-tree-after-subtree-removal-queries
-//
-// Time Complexity: O(N + M)
-//   - N is the number of nodes in the tree, and M is the number of queries.
-//   - We perform a single DFS traversal to compute the depths and heights of all nodes, taking O(N) time.
-//   - We answer each of the M queries in O(1) time using precomputed max heights, taking O(M) time.
-//   - Overall time complexity is O(N + M).
-// Space Complexity: O(N)
-//   - We store depth, max height, and second max height for up to N levels.
-//   - Using fixed-size arrays based on max constraints ensures O(N) space and optimal performance.
-//   - The recursive DFS stack takes up to O(N) space in the worst case for a skewed tree.
+
+/*
+ Time Complexity: O(N + M)
+   - N is the number of nodes in the tree, and M is the number of queries.
+   - We perform a single DFS traversal to compute the depths and heights of all nodes, taking O(N) time.
+   - We answer each of the M queries in O(1) time using precomputed max heights, taking O(M) time.
+   - Overall time complexity is O(N + M).
+ Space Complexity: O(N)
+   - We store depth, max height, and second max height for up to N levels.
+   - Using fixed-size arrays based on max constraints ensures O(N) space and optimal performance.
+   - The recursive DFS stack takes up to O(N) space in the worst case for a skewed tree.
+*/
 
 public class TreeNode {
     public var val: Int

@@ -1,15 +1,17 @@
 //Again -> Segment Tree
 // 715. Range Module
 // https://leetcode.com/problems/range-module
-//
-// Time Complexity: O(N) worst-case per query/add/remove, but O(log N) for pure queries.
-//   - Here, N is the number of disjoint intervals (up to 10^4). 
-//   - Searching for the overlapping ranges takes O(log N) using binary search.
-//   - Modifying the array takes O(N) due to shifting elements. However, arrays in Swift are backed 
-//     by contiguous memory, making `replaceSubrange` utilize `memmove`, which is extremely fast 
-//     for N = 10,000, achieving optimal real-world performance compared to complex trees.
-// Space Complexity: O(N)
-//   - N is the number of disjoint ranges. The array stores at most O(N) intervals.
+
+/*
+ Time Complexity: O(N) worst-case per query/add/remove, but O(log N) for pure queries.
+   - Here, N is the number of disjoint intervals (up to 10^4). 
+   - Searching for the overlapping ranges takes O(log N) using binary search.
+   - Modifying the array takes O(N) due to shifting elements. However, arrays in Swift are backed 
+     by contiguous memory, making `replaceSubrange` utilize `memmove`, which is extremely fast 
+     for N = 10,000, achieving optimal real-world performance compared to complex trees.
+ Space Complexity: O(N)
+   - N is the number of disjoint ranges. The array stores at most O(N) intervals.
+*/
 
 class RangeModule {
     

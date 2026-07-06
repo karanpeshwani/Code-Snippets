@@ -1,28 +1,30 @@
 // 262. Trips and Users
 // https://leetcode.com/problems/trips-and-users
-//
-// Intuition/Explanation:
-// This is natively an SQL Database problem on LeetCode. 
-// The goal is to find the cancellation rate of unbanned users (both client and driver) each day 
-// between '2013-10-01' and '2013-10-03'.
-// 
-// The optimal SQL Query is:
-// ```sql
-// SELECT Request_at AS Day,
-//        ROUND(SUM(IF(Status != 'completed', 1, 0)) / COUNT(*), 2) AS 'Cancellation Rate'
-// FROM Trips t
-// JOIN Users c ON t.Client_Id = c.Users_Id AND c.Banned = 'No'
-// JOIN Users d ON t.Driver_Id = d.Users_Id AND d.Banned = 'No'
-// WHERE Request_at BETWEEN '2013-10-01' AND '2013-10-03'
-// GROUP BY Request_at
-// ```
-// 
-// For completeness in Swift, below is an algorithmic simulation representing the same logic using structs.
-// We iterate through the trips, verify that both the client and driver are unbanned using the users dictionary, 
-// and aggregate the total and cancelled trips by date. Finally, we calculate the rounded rate.
-//
-// Time Complexity: O(T + U), where T is number of trips and U is number of users.
-// Space Complexity: O(U + D), where U is number of users and D is unique days.
+
+/*
+ Intuition/Explanation:
+ This is natively an SQL Database problem on LeetCode. 
+ The goal is to find the cancellation rate of unbanned users (both client and driver) each day 
+ between '2013-10-01' and '2013-10-03'.
+ 
+ The optimal SQL Query is:
+ ```sql
+ SELECT Request_at AS Day,
+        ROUND(SUM(IF(Status != 'completed', 1, 0)) / COUNT(*), 2) AS 'Cancellation Rate'
+ FROM Trips t
+ JOIN Users c ON t.Client_Id = c.Users_Id AND c.Banned = 'No'
+ JOIN Users d ON t.Driver_Id = d.Users_Id AND d.Banned = 'No'
+ WHERE Request_at BETWEEN '2013-10-01' AND '2013-10-03'
+ GROUP BY Request_at
+ ```
+ 
+ For completeness in Swift, below is an algorithmic simulation representing the same logic using structs.
+ We iterate through the trips, verify that both the client and driver are unbanned using the users dictionary, 
+ and aggregate the total and cancelled trips by date. Finally, we calculate the rounded rate.
+
+ Time Complexity: O(T + U), where T is number of trips and U is number of users.
+ Space Complexity: O(U + D), where U is number of users and D is unique days.
+*/
 
 struct Trip {
     let id: Int

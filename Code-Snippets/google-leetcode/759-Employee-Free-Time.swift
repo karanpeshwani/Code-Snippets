@@ -1,10 +1,12 @@
 // 759. Employee Free Time
 // Link: https://leetcode.com/problems/employee-free-time/
-//
-// Time Complexity: O(N log K), where N is the total number of intervals and K is the number of employees.
-// Explanation: We use a Min-Heap of size K to merge the sorted schedules of all employees. Each insertion and extraction takes O(log K).
-// Space Complexity: O(K)
-// Explanation: The heap stores at most one interval from each of the K employees at any given time.
+
+/*
+ Time Complexity: O(N log K), where N is the total number of intervals and K is the number of employees.
+ Explanation: We use a Min-Heap of size K to merge the sorted schedules of all employees. Each insertion and extraction takes O(log K).
+ Space Complexity: O(K)
+ Explanation: The heap stores at most one interval from each of the K employees at any given time.
+*/
 
 import Collections
 

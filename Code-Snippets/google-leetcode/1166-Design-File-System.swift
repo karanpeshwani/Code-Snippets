@@ -1,10 +1,12 @@
 // 1166. Design File System
 // https://leetcode.com/problems/design-file-system/
-//
-// Time Complexity: 
-//   - createPath: O(L), where L is the length of the path string. We split the string by "/" and traverse the Trie. Dictionary lookup at each level is O(1) on average.
-//   - get: O(L), traversing the components of the path similarly takes time proportional to the length of the path.
-// Space Complexity: O(N * L), where N is the total number of paths created and L is the average path length. We store all valid paths in a Trie structure.
+
+/*
+ Time Complexity: 
+   - createPath: O(L), where L is the length of the path string. We split the string by "/" and traverse the Trie. Dictionary lookup at each level is O(1) on average.
+   - get: O(L), traversing the components of the path similarly takes time proportional to the length of the path.
+ Space Complexity: O(N * L), where N is the total number of paths created and L is the average path length. We store all valid paths in a Trie structure.
+*/
 
 class FileSystem {
     

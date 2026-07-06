@@ -1,8 +1,10 @@
 // 2407. Longest Increasing Subsequence II
 // https://leetcode.com/problems/longest-increasing-subsequence-ii
-// Time Complexity: O(N * log(M)), where N is the number of elements in `nums` and M is the maximum value in `nums` (up to 10^5).
-// For each element, we perform a segment tree query and update, both taking O(log M) time.
-// Space Complexity: O(M), to store the segment tree array of size 4 * M.
+/*
+ Time Complexity: O(N * log(M)), where N is the number of elements in `nums` and M is the maximum value in `nums` (up to 10^5).
+ For each element, we perform a segment tree query and update, both taking O(log M) time.
+ Space Complexity: O(M), to store the segment tree array of size 4 * M.
+*/
 
 class Solution {
     func lengthOfLIS(_ nums: [Int], _ k: Int) -> Int {

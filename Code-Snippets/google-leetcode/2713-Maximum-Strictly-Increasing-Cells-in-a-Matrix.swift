@@ -1,10 +1,12 @@
 // 2713. Maximum Strictly Increasing Cells in a Matrix
 // https://leetcode.com/problems/maximum-strictly-increasing-cells-in-a-matrix
 
-// Time Complexity: O(M * N * log(M * N)) where M is the number of rows and N is the number of columns.
-// Finding unique values and sorting them takes O(K log K) time where K is the number of unique elements (K <= M*N).
-// Processing each cell takes O(1) time, so the overall time is dominated by sorting.
-// Space Complexity: O(M * N) for the dictionary to store coordinates of each value, and O(M + N) to maintain maxRow and maxCol arrays.
+/*
+ Time Complexity: O(M * N * log(M * N)) where M is the number of rows and N is the number of columns.
+ Finding unique values and sorting them takes O(K log K) time where K is the number of unique elements (K <= M*N).
+ Processing each cell takes O(1) time, so the overall time is dominated by sorting.
+ Space Complexity: O(M * N) for the dictionary to store coordinates of each value, and O(M + N) to maintain maxRow and maxCol arrays.
+*/
 
 class Solution {
     func maxIncreasingCells(_ mat: [[Int]]) -> Int {

@@ -1,11 +1,13 @@
 //Again -> Segment Tree
 // 732. My Calendar III
 // Link: https://leetcode.com/problems/my-calendar-iii/
-//
-// Time Complexity: O(N^2), where N is the number of events booked.
-// Explanation: For each new event, we iterate over all existing boundaries to calculate the maximum overlaps. Extracting keys and sorting them takes O(N log N) per booking, making overall O(N^2 log N).
-// Space Complexity: O(N)
-// Explanation: We store the start and end times of at most N events, leading to a maximum of 2N points in the timeline map.
+
+/*
+ Time Complexity: O(N^2), where N is the number of events booked.
+ Explanation: For each new event, we iterate over all existing boundaries to calculate the maximum overlaps. Extracting keys and sorting them takes O(N log N) per booking, making overall O(N^2 log N).
+ Space Complexity: O(N)
+ Explanation: We store the start and end times of at most N events, leading to a maximum of 2N points in the timeline map.
+*/
 
 class MyCalendarThree {
     // Stores the delta for each time point.

@@ -1,11 +1,13 @@
 //Again
 // 1671. Minimum Number of Removals to Make Mountain Array
 // https://leetcode.com/problems/minimum-number-of-removals-to-make-mountain-array/
-//
-// Time Complexity: O(N log N), where N is the number of elements in the array. We calculate 
-// the Longest Increasing Subsequence (LIS) from left to right and right to left. 
-// Using binary search, LIS takes O(N log N) time.
-// Space Complexity: O(N) to store the LIS and LDS lengths for each index, and the dpList for binary search.
+
+/*
+ Time Complexity: O(N log N), where N is the number of elements in the array. We calculate 
+ the Longest Increasing Subsequence (LIS) from left to right and right to left. 
+ Using binary search, LIS takes O(N log N) time.
+ Space Complexity: O(N) to store the LIS and LDS lengths for each index, and the dpList for binary search.
+*/
 
 class Solution {
     func minimumMountainRemovals(_ nums: [Int]) -> Int {

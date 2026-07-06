@@ -1,10 +1,12 @@
 // 1044. Longest Duplicate Substring
 // Link: https://leetcode.com/problems/longest-duplicate-substring/
-//
-// Time Complexity: O(N log N), where N is the length of the string.
-// Explanation: We use Binary Search for the length of the duplicate substring (O(log N)). For each length, we use the Rabin-Karp algorithm (Rolling Hash) which takes O(N) time to find a match.
-// Space Complexity: O(N)
-// Explanation: We store the hash set to check for duplicates, which in the worst case can store N substrings. The string is also converted to an array of integers for O(1) access.
+
+/*
+ Time Complexity: O(N log N), where N is the length of the string.
+ Explanation: We use Binary Search for the length of the duplicate substring (O(log N)). For each length, we use the Rabin-Karp algorithm (Rolling Hash) which takes O(N) time to find a match.
+ Space Complexity: O(N)
+ Explanation: We store the hash set to check for duplicates, which in the worst case can store N substrings. The string is also converted to an array of integers for O(1) access.
+*/
 
 class Solution {
     func longestDupSubstring(_ s: String) -> String {

@@ -1,10 +1,12 @@
 // 2791-Count-Paths-That-Can-Form-a-Palindrome-in-a-Tree.swift
 // 2791. Count Paths That Can Form a Palindrome in a Tree
 // https://leetcode.com/problems/count-paths-that-can-form-a-palindrome-in-a-tree/
-//
-// Time Complexity: O(N) since we perform a DFS to find the bitmask for each node from the root.
-// Hash map operations take O(1) on average.
-// Space Complexity: O(N) to store the tree and the frequency map of bitmasks.
+
+/*
+ Time Complexity: O(N) since we perform a DFS to find the bitmask for each node from the root.
+ Hash map operations take O(1) on average.
+ Space Complexity: O(N) to store the tree and the frequency map of bitmasks.
+*/
 
 class Solution {
     func countPalindromePaths(_ parent: [Int], _ s: String) -> Int {

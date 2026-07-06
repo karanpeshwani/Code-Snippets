@@ -1,10 +1,12 @@
 // 212. Word Search II
 // Link: https://leetcode.com/problems/word-search-ii/
-//
-// Time Complexity: O(M * N * 4^L), where M * N is the board size and L is the maximum length of a word.
-// Explanation: In the worst case, we start a backtracking search from every cell and explore up to 4 directions up to length L. The Trie heavily prunes this search.
-// Space Complexity: O(W), where W is the total number of characters in all words.
-// Explanation: The Trie takes space proportional to the sum of the lengths of all given words.
+
+/*
+ Time Complexity: O(M * N * 4^L), where M * N is the board size and L is the maximum length of a word.
+ Explanation: In the worst case, we start a backtracking search from every cell and explore up to 4 directions up to length L. The Trie heavily prunes this search.
+ Space Complexity: O(W), where W is the total number of characters in all words.
+ Explanation: The Trie takes space proportional to the sum of the lengths of all given words.
+*/
 
 class TrieNode {
     var children: [Character: TrieNode] = [:]

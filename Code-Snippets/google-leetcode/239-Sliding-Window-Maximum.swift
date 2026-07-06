@@ -1,10 +1,12 @@
 // 239. Sliding Window Maximum
 // Link: https://leetcode.com/problems/sliding-window-maximum/
-//
-// Time Complexity: O(N), where N is the number of elements in the array.
-// Explanation: Each element is added and removed from the deque at most once, leading to a linear time traversal.
-// Space Complexity: O(k), where k is the window size.
-// Explanation: The deque stores at most k elements at any point in time.
+
+/*
+ Time Complexity: O(N), where N is the number of elements in the array.
+ Explanation: Each element is added and removed from the deque at most once, leading to a linear time traversal.
+ Space Complexity: O(k), where k is the window size.
+ Explanation: The deque stores at most k elements at any point in time.
+*/
 
 import Collections
 

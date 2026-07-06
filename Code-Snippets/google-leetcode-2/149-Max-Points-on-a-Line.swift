@@ -1,18 +1,20 @@
 // 149. Max Points on a Line
 // https://leetcode.com/problems/max-points-on-a-line
-//
-// Intuition/Explanation:
-// Two points determine a line. For each point `i`, we can calculate the slope of the line 
-// connecting it to every other point `j`. All points `j` that have the same slope with point `i` 
-// lie on the same line passing through point `i`.
-// We use a hash map to keep track of the frequencies of each slope originating from point `i`.
-// To avoid precision issues with floating-point numbers when representing slopes, we store the 
-// slope as an irreducible fraction `(dy / dx)`. We divide `dy` and `dx` by their Greatest Common Divisor (GCD).
-// For each point `i`, the maximum points on a line through it is `max(frequencies) + 1` (adding point `i` itself).
-//
-// Time Complexity: O(N^2), where N is the number of points. We compute the slope for all pairs of points.
-// The GCD operation takes O(log(min(dx, dy))) time, which is very fast and effectively a small constant.
-// Space Complexity: O(N) to store the slope frequencies in the hash map for any given point.
+
+/*
+ Intuition/Explanation:
+ Two points determine a line. For each point `i`, we can calculate the slope of the line 
+ connecting it to every other point `j`. All points `j` that have the same slope with point `i` 
+ lie on the same line passing through point `i`.
+ We use a hash map to keep track of the frequencies of each slope originating from point `i`.
+ To avoid precision issues with floating-point numbers when representing slopes, we store the 
+ slope as an irreducible fraction `(dy / dx)`. We divide `dy` and `dx` by their Greatest Common Divisor (GCD).
+ For each point `i`, the maximum points on a line through it is `max(frequencies) + 1` (adding point `i` itself).
+
+ Time Complexity: O(N^2), where N is the number of points. We compute the slope for all pairs of points.
+ The GCD operation takes O(log(min(dx, dy))) time, which is very fast and effectively a small constant.
+ Space Complexity: O(N) to store the slope frequencies in the hash map for any given point.
+*/
 
 class Solution {
     func maxPoints(_ points: [[Int]]) -> Int {

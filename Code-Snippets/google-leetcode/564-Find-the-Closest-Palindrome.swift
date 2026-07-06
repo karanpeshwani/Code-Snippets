@@ -2,10 +2,12 @@
 // 564-Find-the-Closest-Palindrome.swift
 // 564. Find the Closest Palindrome
 // https://leetcode.com/problems/find-the-closest-palindrome/
-//
-// Time Complexity: O(L), where L is the length of the string n. The length is at most 18, so this is effectively O(1).
-// Generating the candidates involves string manipulations of length L.
-// Space Complexity: O(L) to store the string prefix and the candidates, which is also effectively O(1).
+
+/*
+ Time Complexity: O(L), where L is the length of the string n. The length is at most 18, so this is effectively O(1).
+ Generating the candidates involves string manipulations of length L.
+ Space Complexity: O(L) to store the string prefix and the candidates, which is also effectively O(1).
+*/
 
 class Solution {
     func nearestPalindromic(_ n: String) -> String {

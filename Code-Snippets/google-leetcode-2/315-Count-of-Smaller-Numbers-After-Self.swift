@@ -1,18 +1,20 @@
 // 315. Count of Smaller Numbers After Self
 // https://leetcode.com/problems/count-of-smaller-numbers-after-self
-//
-// Intuition/Explanation:
-// We can use a modified Merge Sort to solve this efficiently in O(N log N).
-// We sort an array of `(value, original_index)` tuples so we know which index to update in our result array.
-// During the merge step of Merge Sort (merging sorted left and right halves):
-// When we pick an element from the left half to place in the merged array, it means this element is 
-// strictly smaller than or equal to the remaining elements in the right half.
-// Crucially, all the elements we have ALREADY placed from the right half are STRICTLY SMALLER than 
-// the current element we are placing from the left half.
-// So, we just add the count of already-placed right elements to the answer for the current left element's original index.
-//
-// Time Complexity: O(N log N), which is standard for merge sort algorithms.
-// Space Complexity: O(N) for the temporary array during merge sort and the tuple array.
+
+/*
+ Intuition/Explanation:
+ We can use a modified Merge Sort to solve this efficiently in O(N log N).
+ We sort an array of `(value, original_index)` tuples so we know which index to update in our result array.
+ During the merge step of Merge Sort (merging sorted left and right halves):
+ When we pick an element from the left half to place in the merged array, it means this element is 
+ strictly smaller than or equal to the remaining elements in the right half.
+ Crucially, all the elements we have ALREADY placed from the right half are STRICTLY SMALLER than 
+ the current element we are placing from the left half.
+ So, we just add the count of already-placed right elements to the answer for the current left element's original index.
+
+ Time Complexity: O(N log N), which is standard for merge sort algorithms.
+ Space Complexity: O(N) for the temporary array during merge sort and the tuple array.
+*/
 
 class Solution {
     func countSmaller(_ nums: [Int]) -> [Int] {

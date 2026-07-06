@@ -1,9 +1,11 @@
 // 76. Minimum Window Substring
 // Link: https://leetcode.com/problems/minimum-window-substring/
-//
-// Time Complexity: O(M + N), where M and N are the lengths of strings s and t.
-// Explanation: The window iterates over 's' and 't' at most once. Dictionary lookups take O(1) average time.
-// Space Complexity: O(M + N) for the Character array conversion, plus O(U) for dictionaries (where U is unique characters).
+
+/*
+ Time Complexity: O(M + N), where M and N are the lengths of strings s and t.
+ Explanation: The window iterates over 's' and 't' at most once. Dictionary lookups take O(1) average time.
+ Space Complexity: O(M + N) for the Character array conversion, plus O(U) for dictionaries (where U is unique characters).
+*/
 
 class Solution {
     func minWindow(_ s: String, _ t: String) -> String {

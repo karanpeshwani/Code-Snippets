@@ -2,9 +2,11 @@
 // 679-24-Game.swift
 // 679. 24 Game
 // https://leetcode.com/problems/24-game/
-//
-// Time Complexity: O(1). Since the array size is always 4, there are at most 4! permutations and a limited number of ways to group the operations. We check all combinations in O(1) time.
-// Space Complexity: O(1) as the recursion depth is at most 4.
+
+/*
+ Time Complexity: O(1). Since the array size is always 4, there are at most 4! permutations and a limited number of ways to group the operations. We check all combinations in O(1) time.
+ Space Complexity: O(1) as the recursion depth is at most 4.
+*/
 
 class Solution {
     func judgePoint24(_ cards: [Int]) -> Bool {

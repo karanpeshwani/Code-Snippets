@@ -1,7 +1,9 @@
 // 818. Race Car
 // https://leetcode.com/problems/race-car
-// Time Complexity: O(T * log(T)), where T is the target. The DP solves subproblems for each target up to T, and for each target it iterates at most log(T) times.
-// Space Complexity: O(T), to store the DP memoization table up to size T.
+/*
+ Time Complexity: O(T * log(T)), where T is the target. The DP solves subproblems for each target up to T, and for each target it iterates at most log(T) times.
+ Space Complexity: O(T), to store the DP memoization table up to size T.
+*/
 
 class Solution {
     // Memoization table to store minimum instructions for a given target distance

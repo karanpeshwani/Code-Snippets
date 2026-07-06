@@ -2,9 +2,11 @@
 // 864-Shortest-Path-to-Get-All-Keys.swift
 // 864. Shortest Path to Get All Keys
 // https://leetcode.com/problems/shortest-path-to-get-all-keys/
-//
-// Time Complexity: O(M * N * 2^K) where M and N are the grid dimensions and K is the number of keys. We do a BFS where states are (r, c, keysMask).
-// Space Complexity: O(M * N * 2^K) to store the visited states and the BFS queue.
+
+/*
+ Time Complexity: O(M * N * 2^K) where M and N are the grid dimensions and K is the number of keys. We do a BFS where states are (r, c, keysMask).
+ Space Complexity: O(M * N * 2^K) to store the visited states and the BFS queue.
+*/
 
 class Solution {
     func shortestPathAllKeys(_ grid: [String]) -> Int {

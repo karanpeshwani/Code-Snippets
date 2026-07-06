@@ -1,9 +1,11 @@
 // 2954-Count-the-Number-of-Infection-Sequences.swift
 // 2954. Count the Number of Infection Sequences
 // https://leetcode.com/problems/count-the-number-of-infection-sequences/
-//
-// Time Complexity: O(N) to precompute factorials and modular inverses. Finding gaps and calculating the result takes O(M) where M is the number of sick children. Overall O(N).
-// Space Complexity: O(N) to store factorials for calculating combinations.
+
+/*
+ Time Complexity: O(N) to precompute factorials and modular inverses. Finding gaps and calculating the result takes O(M) where M is the number of sick children. Overall O(N).
+ Space Complexity: O(N) to store factorials for calculating combinations.
+*/
 
 class Solution {
     func numberOfSequence(_ n: Int, _ sick: [Int]) -> Int {

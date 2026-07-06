@@ -2,10 +2,12 @@
 // 815-Bus-Routes.swift
 // 815. Bus Routes
 // https://leetcode.com/problems/bus-routes/
-//
-// Time Complexity: O(N * M), where N is the number of bus routes and M is the maximum number of stops in a single route.
-// Generating the stop to buses map takes O(N * M). The BFS visits each bus at most once and processes all its stops, taking O(N * M) overall.
-// Space Complexity: O(N * M) to store the mapping from stops to buses, and for the queue and visited sets.
+
+/*
+ Time Complexity: O(N * M), where N is the number of bus routes and M is the maximum number of stops in a single route.
+ Generating the stop to buses map takes O(N * M). The BFS visits each bus at most once and processes all its stops, taking O(N * M) overall.
+ Space Complexity: O(N * M) to store the mapping from stops to buses, and for the queue and visited sets.
+*/
 
 class Solution {
     func numBusesToDestination(_ routes: [[Int]], _ source: Int, _ target: Int) -> Int {

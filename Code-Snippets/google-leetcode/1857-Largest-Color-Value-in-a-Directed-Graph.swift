@@ -1,11 +1,13 @@
 //Again
 // 1857. Largest Color Value in a Directed Graph
 // https://leetcode.com/problems/largest-color-value-in-a-directed-graph
-//
-// Time Complexity: O(V + E), where V is the number of nodes and E is the number of edges.
-// We visit each node and each edge once during the topological sort. For each node, we do O(26) work 
-// to update the DP state of its neighbors, which is effectively O(1). Thus, the time complexity is linear.
-// Space Complexity: O(V + E) for storing the adjacency list and in-degrees. The DP array takes O(V * 26) = O(V) space.
+
+/*
+ Time Complexity: O(V + E), where V is the number of nodes and E is the number of edges.
+ We visit each node and each edge once during the topological sort. For each node, we do O(26) work 
+ to update the DP state of its neighbors, which is effectively O(1). Thus, the time complexity is linear.
+ Space Complexity: O(V + E) for storing the adjacency list and in-degrees. The DP array takes O(V * 26) = O(V) space.
+*/
 
 //Approach 1: DFS:
 class Solution {

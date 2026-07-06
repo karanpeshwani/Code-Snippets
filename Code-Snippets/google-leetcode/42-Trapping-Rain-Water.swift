@@ -1,10 +1,12 @@
 // 42. Trapping Rain Water
 // Link: https://leetcode.com/problems/trapping-rain-water/
-//
-// Time Complexity: O(N), where N is the number of elements in the height array.
-// Explanation: We iterate through the array once using two pointers, taking constant time at each step.
-// Space Complexity: O(1)
-// Explanation: We only use a few variables for pointers and max heights, requiring constant extra space.
+
+/*
+ Time Complexity: O(N), where N is the number of elements in the height array.
+ Explanation: We iterate through the array once using two pointers, taking constant time at each step.
+ Space Complexity: O(1)
+ Explanation: We only use a few variables for pointers and max heights, requiring constant extra space.
+*/
 
 class Solution {
     func trap(_ height: [Int]) -> Int {

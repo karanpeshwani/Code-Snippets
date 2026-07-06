@@ -1,10 +1,12 @@
 // 295. Find Median from Data Stream
 // Link: https://leetcode.com/problems/find-median-from-data-stream/
-//
-// Time Complexity: O(log N) for addNum, O(1) for findMedian.
-// Explanation: Adding a number takes logarithmic time as we insert and extract from a heap. Finding the median is a constant time lookup of the roots of the heaps.
-// Space Complexity: O(N)
-// Explanation: The two heaps store all N elements from the data stream.
+
+/*
+ Time Complexity: O(log N) for addNum, O(1) for findMedian.
+ Explanation: Adding a number takes logarithmic time as we insert and extract from a heap. Finding the median is a constant time lookup of the roots of the heaps.
+ Space Complexity: O(N)
+ Explanation: The two heaps store all N elements from the data stream.
+*/
 
 import Collections
 

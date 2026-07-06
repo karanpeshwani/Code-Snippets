@@ -1,10 +1,12 @@
 // 305-Number-of-Islands-II.swift
 // 305. Number of Islands II
 // https://leetcode.com/problems/number-of-islands-ii/
-//
-// Time Complexity: O(k * alpha(mn)) where k is the number of positions. We use Union-Find with path compression.
-// alpha(mn) => inverse Ackermann function. It is almost constant for any value.
-// Space Complexity: O(m * n) for the Union-Find parent array.
+
+/*
+ Time Complexity: O(k * alpha(mn)) where k is the number of positions. We use Union-Find with path compression.
+ alpha(mn) => inverse Ackermann function. It is almost constant for any value.
+ Space Complexity: O(m * n) for the Union-Find parent array.
+*/
 
 class Solution {
     func numIslands2(_ m: Int, _ n: Int, _ positions: [[Int]]) -> [Int] {

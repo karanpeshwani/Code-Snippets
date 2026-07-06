@@ -1,11 +1,13 @@
 //Again => Revision
 // 2290. Minimum Obstacle Removal to Reach Corner
 // https://leetcode.com/problems/minimum-obstacle-removal-to-reach-corner/
-//
-// Time Complexity: O(m * n), where m is the number of rows and n is the number of columns.
-// We use 0-1 BFS because the edge weights are either 0 (empty cell) or 1 (obstacle). 
-// Each cell is processed at most once.
-// Space Complexity: O(m * n) to store the deque and the distances array.
+
+/*
+ Time Complexity: O(m * n), where m is the number of rows and n is the number of columns.
+ We use 0-1 BFS because the edge weights are either 0 (empty cell) or 1 (obstacle). 
+ Each cell is processed at most once.
+ Space Complexity: O(m * n) to store the deque and the distances array.
+*/
 
 import Collections
 

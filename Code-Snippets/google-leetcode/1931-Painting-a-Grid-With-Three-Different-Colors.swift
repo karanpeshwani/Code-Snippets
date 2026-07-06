@@ -2,9 +2,11 @@
 // 1931-Painting-a-Grid-With-Three-Different-Colors.swift
 // 1931. Painting a Grid With Three Different Colors
 // https://leetcode.com/problems/painting-a-grid-with-three-different-colors/
-//
-// Time Complexity: O(N * 3^M). M is at most 5, so 3^M is small. We precompute valid states and transitions, then run a DP.
-// Space Complexity: O(3^M) for storing the DP table and adjacency lists.
+
+/*
+ Time Complexity: O(N * 3^M). M is at most 5, so 3^M is small. We precompute valid states and transitions, then run a DP.
+ Space Complexity: O(3^M) for storing the DP table and adjacency lists.
+*/
 
 class Solution {
     func colorTheGrid(_ m: Int, _ n: Int) -> Int {

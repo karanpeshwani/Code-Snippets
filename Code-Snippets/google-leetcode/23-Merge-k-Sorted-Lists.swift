@@ -1,10 +1,12 @@
 // 23. Merge k Sorted Lists
 // Link: https://leetcode.com/problems/merge-k-sorted-lists/
-//
-// Time Complexity: O(N log k), where N is the total number of nodes and k is the number of linked lists.
-// Explanation: The heap size is at most k. We insert and pop N times, each taking O(log k) time.
-// Space Complexity: O(k)
-// Explanation: The heap stores at most one node from each of the k linked lists at any given time.
+
+/*
+ Time Complexity: O(N log k), where N is the total number of nodes and k is the number of linked lists.
+ Explanation: The heap size is at most k. We insert and pop N times, each taking O(log k) time.
+ Space Complexity: O(k)
+ Explanation: The heap stores at most one node from each of the k linked lists at any given time.
+*/
 
 import Collections
 

@@ -1,12 +1,14 @@
 //Again
 // 975. Odd Even Jump
 // https://leetcode.com/problems/odd-even-jump
-//
-// Time Complexity: O(N log N), where N is the length of the array.
-// Sorting the indices based on values takes O(N log N) time.
-// Building the next jump arrays using a monotonic stack takes O(N) time.
-// The dynamic programming step takes O(N) time. Overall time complexity is dominated by sorting.
-// Space Complexity: O(N) for storing the sorted indices, monotonic stack, next jump arrays, and DP arrays.
+
+/*
+ Time Complexity: O(N log N), where N is the length of the array.
+ Sorting the indices based on values takes O(N log N) time.
+ Building the next jump arrays using a monotonic stack takes O(N) time.
+ The dynamic programming step takes O(N) time. Overall time complexity is dominated by sorting.
+ Space Complexity: O(N) for storing the sorted indices, monotonic stack, next jump arrays, and DP arrays.
+*/
 
 class Solution {
     func oddEvenJumps(_ arr: [Int]) -> Int {

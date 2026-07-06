@@ -1,10 +1,12 @@
 // 269. Alien Dictionary
 // Link: https://leetcode.com/problems/alien-dictionary/
-//
-// Time Complexity: O(C), where C is the total length of all the words in the input list.
-// Explanation: Building the graph requires iterating through all characters of all words. The topological sort visits each character/edge at most once (bounded by 26 characters).
-// Space Complexity: O(1) or O(U + E), where U is unique letters and E is relations.
-// Explanation: Since the alphabet is fixed to 26 letters, the adjacency list and in-degree map take constant O(1) space.
+
+/*
+ Time Complexity: O(C), where C is the total length of all the words in the input list.
+ Explanation: Building the graph requires iterating through all characters of all words. The topological sort visits each character/edge at most once (bounded by 26 characters).
+ Space Complexity: O(1) or O(U + E), where U is unique letters and E is relations.
+ Explanation: Since the alphabet is fixed to 26 letters, the adjacency list and in-degree map take constant O(1) space.
+*/
 
 class Solution {
     func alienOrder(_ words: [String]) -> String {

@@ -1,11 +1,13 @@
 //Again
 // 642. Design Search Autocomplete System
 // https://leetcode.com/problems/design-search-autocomplete-system/
-//
-// Time Complexity: 
-//   - init: O(K * L), where K is the number of initial sentences and L is the average length of a sentence.
-//   - input: O(P + Q log Q), where P is the length of the typed prefix and Q is the number of sentences passing through the current Trie node. Sorting takes O(Q log Q) but Q is relatively small.
-// Space Complexity: O(N * L), where N is the total number of unique sentences and L is the average sentence length. We store nodes in the Trie and also keep all valid sentences associated with their prefixes.
+
+/*
+ Time Complexity: 
+   - init: O(K * L), where K is the number of initial sentences and L is the average length of a sentence.
+   - input: O(P + Q log Q), where P is the length of the typed prefix and Q is the number of sentences passing through the current Trie node. Sorting takes O(Q log Q) but Q is relatively small.
+ Space Complexity: O(N * L), where N is the total number of unique sentences and L is the average sentence length. We store nodes in the Trie and also keep all valid sentences associated with their prefixes.
+*/
 
 class AutocompleteSystem {
     // A TrieNode keeps track of children and all full sentences that pass through this prefix

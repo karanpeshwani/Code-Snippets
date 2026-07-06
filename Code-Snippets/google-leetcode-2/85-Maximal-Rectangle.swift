@@ -1,18 +1,20 @@
 // 85. Maximal Rectangle
 // https://leetcode.com/problems/maximal-rectangle
-//
-// Intuition/Explanation:
-// This problem can be reduced to the "Largest Rectangle in Histogram" problem.
-// We process the 2D matrix row by row. For each row, we maintain a 1D array representing 
-// a histogram of heights.
-// If a cell is '1', its height increases by 1 compared to the previous row. 
-// If it's '0', its height resets to 0 (because the column of 1s is broken).
-// After updating the heights for a row, we apply the monotonic stack approach to find the 
-// largest rectangle in that row's histogram and update our global maximum area.
-//
-// Time Complexity: O(R * C), where R is the number of rows and C is the number of columns. 
-// We visit each cell to update heights, and computing the histogram area takes O(C) time per row.
-// Space Complexity: O(C) to store the heights of the current row's histogram and the stack.
+
+/*
+ Intuition/Explanation:
+ This problem can be reduced to the "Largest Rectangle in Histogram" problem.
+ We process the 2D matrix row by row. For each row, we maintain a 1D array representing 
+ a histogram of heights.
+ If a cell is '1', its height increases by 1 compared to the previous row. 
+ If it's '0', its height resets to 0 (because the column of 1s is broken).
+ After updating the heights for a row, we apply the monotonic stack approach to find the 
+ largest rectangle in that row's histogram and update our global maximum area.
+
+ Time Complexity: O(R * C), where R is the number of rows and C is the number of columns. 
+ We visit each cell to update heights, and computing the histogram area takes O(C) time per row.
+ Space Complexity: O(C) to store the heights of the current row's histogram and the stack.
+*/
 
 class Solution {
     func maximalRectangle(_ matrix: [[Character]]) -> Int {

@@ -1,9 +1,11 @@
 // 987-Vertical-Order-Traversal-of-a-Binary-Tree.swift
 // 987. Vertical Order Traversal of a Binary Tree
 // https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/
-//
-// Time Complexity: O(N log N) where N is the number of nodes. We traverse all nodes in O(N), but then sort the elements based on column, row and value.
-// Space Complexity: O(N) to store the mapping from col and row to node values.
+
+/*
+ Time Complexity: O(N log N) where N is the number of nodes. We traverse all nodes in O(N), but then sort the elements based on column, row and value.
+ Space Complexity: O(N) to store the mapping from col and row to node values.
+*/
 
 // Definition for a binary tree node.
 // public class TreeNode {

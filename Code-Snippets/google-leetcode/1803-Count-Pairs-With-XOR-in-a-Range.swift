@@ -2,10 +2,12 @@
 // 1803. Count Pairs With XOR in a Range
 // https://leetcode.com/problems/count-pairs-with-xor-in-a-range
 
-// Time Complexity: O(N * L) where N is the number of elements in nums and L is the number of bits (15).
-// We iterate over the array once. For each element, we query the Trie twice (for high and low - 1) and then insert it into the Trie,
-// both taking O(L) time. Thus, the total time complexity is bounded by O(N * L).
-// Space Complexity: O(N * L) for storing the Trie nodes. In the worst case, each insertion can add up to L new nodes.
+/*
+ Time Complexity: O(N * L) where N is the number of elements in nums and L is the number of bits (15).
+ We iterate over the array once. For each element, we query the Trie twice (for high and low - 1) and then insert it into the Trie,
+ both taking O(L) time. Thus, the total time complexity is bounded by O(N * L).
+ Space Complexity: O(N * L) for storing the Trie nodes. In the worst case, each insertion can add up to L new nodes.
+*/
 
 class Solution {
     class TrieNode {

@@ -1,10 +1,12 @@
 // 72. Edit Distance
 // Link: https://leetcode.com/problems/edit-distance/
-//
-// Time Complexity: O(M * N), where M and N are the lengths of word1 and word2.
-// Explanation: We compute the edit distance for every prefix pair of word1 and word2, taking constant time per pair.
-// Space Complexity: O(N), where N is the length of the shorter word.
-// Explanation: We optimize the 2D DP table to a 1D array since we only need the previous row's state at any point.
+
+/*
+ Time Complexity: O(M * N), where M and N are the lengths of word1 and word2.
+ Explanation: We compute the edit distance for every prefix pair of word1 and word2, taking constant time per pair.
+ Space Complexity: O(N), where N is the length of the shorter word.
+ Explanation: We optimize the 2D DP table to a 1D array since we only need the previous row's state at any point.
+*/
 
 class Solution {
     func minDistance(_ word1: String, _ word2: String) -> Int {

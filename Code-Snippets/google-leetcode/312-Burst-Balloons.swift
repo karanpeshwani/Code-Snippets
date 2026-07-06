@@ -1,12 +1,14 @@
 // 312. Burst Balloons
 // Link: https://leetcode.com/problems/burst-balloons/
-//
-// Time Complexity: O(N^3), where N is the number of balloons.
-// Explanation: There are O(N^2) possible states (subarrays defined by left and right pointers).
-// For each state, we iterate through up to N possible balloons to burst last.
-// Space Complexity: O(N^2)
-// Explanation: The memoization table stores the maximum coins for every possible subarray of balloons,
-// plus the recursion call stack which goes up to O(N) deep.
+
+/*
+ Time Complexity: O(N^3), where N is the number of balloons.
+ Explanation: There are O(N^2) possible states (subarrays defined by left and right pointers).
+ For each state, we iterate through up to N possible balloons to burst last.
+ Space Complexity: O(N^2)
+ Explanation: The memoization table stores the maximum coins for every possible subarray of balloons,
+ plus the recursion call stack which goes up to O(N) deep.
+*/
 
 class Solution {
     func maxCoins(_ nums: [Int]) -> Int {

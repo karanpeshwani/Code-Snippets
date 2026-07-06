@@ -1,20 +1,22 @@
 // 44. Wildcard Matching
 // https://leetcode.com/problems/wildcard-matching
-//
-// Intuition/Explanation:
-// We can use a greedy two-pointer approach for optimal time complexity.
-// We maintain pointers `sIdx` for string `s` and `pIdx` for pattern `p`.
-// - If characters match or `p` has '?', we advance both pointers.
-// - If `p` has '*', we record the current `sIdx` as `match` and `pIdx` as `starIdx`, then advance `pIdx` 
-//   (greedily assuming '*' matches zero characters first).
-// - If there's a mismatch but we've seen a '*', we go back to the last '*', advance `match` by 1 
-//   (trying to match one more character of `s` with '*'), and reset `sIdx` and `pIdx`.
-// - If there's a mismatch and no '*' was seen, return false.
-// Finally, we check if any remaining characters in `p` are all '*'.
-//
-// Time Complexity: O(S * P) in the worst case (e.g., s="aaaaab", p="*a*a*a*a*a*c"), 
-// but typically O(S + P) average time complexity.
-// Space Complexity: O(1), since we only use integer variables for pointers.
+
+/*
+ Intuition/Explanation:
+ We can use a greedy two-pointer approach for optimal time complexity.
+ We maintain pointers `sIdx` for string `s` and `pIdx` for pattern `p`.
+ - If characters match or `p` has '?', we advance both pointers.
+ - If `p` has '*', we record the current `sIdx` as `match` and `pIdx` as `starIdx`, then advance `pIdx` 
+   (greedily assuming '*' matches zero characters first).
+ - If there's a mismatch but we've seen a '*', we go back to the last '*', advance `match` by 1 
+   (trying to match one more character of `s` with '*'), and reset `sIdx` and `pIdx`.
+ - If there's a mismatch and no '*' was seen, return false.
+ Finally, we check if any remaining characters in `p` are all '*'.
+
+ Time Complexity: O(S * P) in the worst case (e.g., s="aaaaab", p="*a*a*a*a*a*c"), 
+ but typically O(S + P) average time complexity.
+ Space Complexity: O(1), since we only use integer variables for pointers.
+*/
 
 class Solution {
     func isMatch(_ s: String, _ p: String) -> Bool {

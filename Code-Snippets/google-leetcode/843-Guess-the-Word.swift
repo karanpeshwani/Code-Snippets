@@ -1,8 +1,10 @@
 // 843. Guess the Word
 // https://leetcode.com/problems/guess-the-word
 
-// Time Complexity: O(N^2) where N is the number of candidates. In each iteration we compare all pairs to find the minimax score. There are at most 10 iterations. For N = 100, N^2 is 10,000 comparisons per guess, which is extremely fast.
-// Space Complexity: O(N) to store the list of candidate words.
+/*
+ Time Complexity: O(N^2) where N is the number of candidates. In each iteration we compare all pairs to find the minimax score. There are at most 10 iterations. For N = 100, N^2 is 10,000 comparisons per guess, which is extremely fast.
+ Space Complexity: O(N) to store the list of candidate words.
+*/
 
 /**
  * // This is the Master's API interface.

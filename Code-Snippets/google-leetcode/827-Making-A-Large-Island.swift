@@ -1,9 +1,11 @@
 // 827-Making-A-Large-Island.swift
 // 827. Making A Large Island
 // https://leetcode.com/problems/making-a-large-island/
-//
-// Time Complexity: O(N^2) where N is the length of the grid. We do a DFS to find the area of each island, then we check each 0 to see what islands it connects.
-// Space Complexity: O(N^2) for DFS recursion stack and island ID mapping.
+
+/*
+ Time Complexity: O(N^2) where N is the length of the grid. We do a DFS to find the area of each island, then we check each 0 to see what islands it connects.
+ Space Complexity: O(N^2) for DFS recursion stack and island ID mapping.
+*/
 
 class Solution {
     func largestIsland(_ grid: [[Int]]) -> Int {

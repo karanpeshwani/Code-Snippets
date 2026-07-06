@@ -1,20 +1,22 @@
 // 10. Regular Expression Matching
 // https://leetcode.com/problems/regular-expression-matching
-//
-// Intuition/Explanation:
-// We can use dynamic programming to solve this. Let `dp[i][j]` be a boolean indicating 
-// whether the first `i` characters of `s` match the first `j` characters of `p`.
-// If `p[j-1] == '*'`:
-//  - We can ignore the '*' and the preceding character: `dp[i][j] = dp[i][j-2]`
-//  - Or, if the preceding character matches `s[i-1]` (i.e. `p[j-2] == s[i-1]` or `p[j-2] == '.'`), 
-//    we can use the '*' to match `s[i-1]`: `dp[i][j] = dp[i-1][j]`
-// If `p[j-1] != '*'`:
-//  - We must have `p[j-1] == s[i-1]` or `p[j-1] == '.'` for a match: `dp[i][j] = dp[i-1][j-1]`
-// Base cases: `dp[0][0] = true`, and for `j > 0`, `dp[0][j] = dp[0][j-2]` if `p[j-1] == '*'`.
-//
-// Time Complexity: O(M * N), where M is the length of s and N is the length of p. 
-// We iterate through the DP table of size (M+1) x (N+1).
-// Space Complexity: O(M * N) for the DP table. (This can be optimized to O(N) by just keeping the previous row).
+
+/*
+ Intuition/Explanation:
+ We can use dynamic programming to solve this. Let `dp[i][j]` be a boolean indicating 
+ whether the first `i` characters of `s` match the first `j` characters of `p`.
+ If `p[j-1] == '*'`:
+  - We can ignore the '*' and the preceding character: `dp[i][j] = dp[i][j-2]`
+  - Or, if the preceding character matches `s[i-1]` (i.e. `p[j-2] == s[i-1]` or `p[j-2] == '.'`), 
+    we can use the '*' to match `s[i-1]`: `dp[i][j] = dp[i-1][j]`
+ If `p[j-1] != '*'`:
+  - We must have `p[j-1] == s[i-1]` or `p[j-1] == '.'` for a match: `dp[i][j] = dp[i-1][j-1]`
+ Base cases: `dp[0][0] = true`, and for `j > 0`, `dp[0][j] = dp[0][j-2]` if `p[j-1] == '*'`.
+
+ Time Complexity: O(M * N), where M is the length of s and N is the length of p. 
+ We iterate through the DP table of size (M+1) x (N+1).
+ Space Complexity: O(M * N) for the DP table. (This can be optimized to O(N) by just keeping the previous row).
+*/
 
 class Solution {
     func isMatch(_ s: String, _ p: String) -> Bool {

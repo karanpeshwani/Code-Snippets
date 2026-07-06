@@ -1,18 +1,20 @@
 // 51. N-Queens
 // https://leetcode.com/problems/n-queens
-//
-// Intuition/Explanation:
-// This problem can be solved using backtracking. We place queens row by row.
-// To efficiently check if a cell is under attack, we use sets to track:
-// - Occupied columns.
-// - Positive diagonals (row + col is constant for each positive diagonal).
-// - Negative diagonals (row - col is constant for each negative diagonal).
-// For a given row, we try all columns. If placing a queen is safe (not in our sets), 
-// we update our sets and recurse to the next row.
-// Once `n` rows are processed, a valid configuration is found, which we format and store in the result array.
-//
-// Time Complexity: O(N!), where N is the number of queens. The number of choices decreases as we place queens.
-// Space Complexity: O(N) to track columns, diagonals, and the current board configuration in the recursion stack.
+
+/*
+ Intuition/Explanation:
+ This problem can be solved using backtracking. We place queens row by row.
+ To efficiently check if a cell is under attack, we use sets to track:
+ - Occupied columns.
+ - Positive diagonals (row + col is constant for each positive diagonal).
+ - Negative diagonals (row - col is constant for each negative diagonal).
+ For a given row, we try all columns. If placing a queen is safe (not in our sets), 
+ we update our sets and recurse to the next row.
+ Once `n` rows are processed, a valid configuration is found, which we format and store in the result array.
+
+ Time Complexity: O(N!), where N is the number of queens. The number of choices decreases as we place queens.
+ Space Complexity: O(N) to track columns, diagonals, and the current board configuration in the recursion stack.
+*/
 
 class Solution {
     func solveNQueens(_ n: Int) -> [[String]] {

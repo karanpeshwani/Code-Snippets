@@ -1,8 +1,10 @@
 // 140. Word Break II
 // https://leetcode.com/problems/word-break-ii/
-//
-// Time Complexity: O(N * 2^N), where N is the length of the string `s`. In the worst case (e.g., s = "aaaaa", wordDict = ["a", "aa", "aaa", ...]), the number of possible sentences can be 2^(N-1). We memoize the results to avoid redundant work, but generating all valid combinations still takes exponential time in the worst case.
-// Space Complexity: O(N * 2^N) to store the memoization dictionary containing all valid sentences for each start index. The recursion call stack depth can also go up to O(N).
+
+/*
+ Time Complexity: O(N * 2^N), where N is the length of the string `s`. In the worst case (e.g., s = "aaaaa", wordDict = ["a", "aa", "aaa", ...]), the number of possible sentences can be 2^(N-1). We memoize the results to avoid redundant work, but generating all valid combinations still takes exponential time in the worst case.
+ Space Complexity: O(N * 2^N) to store the memoization dictionary containing all valid sentences for each start index. The recursion call stack depth can also go up to O(N).
+*/
 
 class Solution {
     func wordBreak(_ s: String, _ wordDict: [String]) -> [String] {

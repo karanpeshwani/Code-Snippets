@@ -2,10 +2,12 @@
 // 719-Find-K-th-Smallest-Pair-Distance.swift
 // 719. Find K-th Smallest Pair Distance
 // https://leetcode.com/problems/find-k-th-smallest-pair-distance/
-//
-// Time Complexity: O(N log N + N log W) where N is the length of nums and W is the maximum possible distance (max_val - min_val).
-// We sort the array in O(N log N). The binary search takes O(log(W)) and counting pairs takes O(N).
-// Space Complexity: O(1) or O(N) depending on the sorting algorithm implementation in Swift.
+
+/*
+ Time Complexity: O(N log N + N log W) where N is the length of nums and W is the maximum possible distance (max_val - min_val).
+ We sort the array in O(N log N). The binary search takes O(log(W)) and counting pairs takes O(N).
+ Space Complexity: O(1) or O(N) depending on the sorting algorithm implementation in Swift.
+*/
 
 class Solution {
     func smallestDistancePair(_ nums: [Int], _ k: Int) -> Int {

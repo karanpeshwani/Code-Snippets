@@ -1,10 +1,12 @@
 // 297. Serialize and Deserialize Binary Tree
 // Link: https://leetcode.com/problems/serialize-and-deserialize-binary-tree/
-//
-// Time Complexity: O(N), where N is the number of nodes in the tree.
-// Explanation: Both serialization and deserialization visit each node exactly once using a preorder traversal.
-// Space Complexity: O(N)
-// Explanation: The string representation and the array created during deserialization take O(N) space. The recursion stack also takes up to O(N) in the worst case (skewed tree).
+
+/*
+ Time Complexity: O(N), where N is the number of nodes in the tree.
+ Explanation: Both serialization and deserialization visit each node exactly once using a preorder traversal.
+ Space Complexity: O(N)
+ Explanation: The string representation and the array created during deserialization take O(N) space. The recursion stack also takes up to O(N) in the worst case (skewed tree).
+*/
 
 // Definition for a binary tree node.
 public class TreeNode {

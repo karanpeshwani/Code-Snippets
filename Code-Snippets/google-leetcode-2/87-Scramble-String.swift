@@ -1,19 +1,21 @@
 // 87. Scramble String
 // https://leetcode.com/problems/scramble-string
-//
-// Intuition/Explanation:
-// We use recursion with memoization. 
-// A string `s1` is a scrambled string of `s2` if they are equal, or if we can split both 
-// into two non-empty substrings `(s1_left, s1_right)` and `(s2_left, s2_right)` such that:
-// 1. `s1_left` is a scramble of `s2_left` AND `s1_right` is a scramble of `s2_right` (no swap occurred).
-// OR
-// 2. `s1_left` is a scramble of `s2_right` AND `s1_right` is a scramble of `s2_left` (swap occurred).
-// To optimize and prevent checking deeply, before recursing, we verify if `s1` and `s2` have the 
-// same character counts. If they don't, they cannot be scrambles. We also memoize results.
-//
-// Time Complexity: O(N^4) with memoization in the worst case (where N is the string length). 
-// There are O(N^3) states (start1, start2, length), and each state takes O(N) to compute.
-// Space Complexity: O(N^3) to store the memoization cache.
+
+/*
+ Intuition/Explanation:
+ We use recursion with memoization. 
+ A string `s1` is a scrambled string of `s2` if they are equal, or if we can split both 
+ into two non-empty substrings `(s1_left, s1_right)` and `(s2_left, s2_right)` such that:
+ 1. `s1_left` is a scramble of `s2_left` AND `s1_right` is a scramble of `s2_right` (no swap occurred).
+ OR
+ 2. `s1_left` is a scramble of `s2_right` AND `s1_right` is a scramble of `s2_left` (swap occurred).
+ To optimize and prevent checking deeply, before recursing, we verify if `s1` and `s2` have the 
+ same character counts. If they don't, they cannot be scrambles. We also memoize results.
+
+ Time Complexity: O(N^4) with memoization in the worst case (where N is the string length). 
+ There are O(N^3) states (start1, start2, length), and each state takes O(N) to compute.
+ Space Complexity: O(N^3) to store the memoization cache.
+*/
 
 class Solution {
     func isScramble(_ s1: String, _ s2: String) -> Bool {

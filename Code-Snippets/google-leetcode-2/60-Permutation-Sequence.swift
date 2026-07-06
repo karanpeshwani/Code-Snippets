@@ -1,16 +1,18 @@
 // 60. Permutation Sequence
 // https://leetcode.com/problems/permutation-sequence
-//
-// Intuition/Explanation:
-// Instead of generating all permutations (which takes O(N!) time), we can determine the k-th permutation mathematically.
-// For `n` numbers, there are `(n - 1)!` permutations starting with each of the `n` digits.
-// We can find the first digit by calculating `(k - 1) / (n - 1)!`. This gives the index in the sorted list of available digits.
-// After picking the digit, we update `k = (k - 1) % (n - 1)!` and repeat the process for the next digit using `(n - 2)!`.
-// We maintain an array of available digits `[1, 2, ..., n]` and remove digits as they are picked to form the result.
-//
-// Time Complexity: O(N^2), where N is the number of digits. We iterate N times, and removing an element 
-// from the middle of an array takes O(N) time.
-// Space Complexity: O(N) to store the list of available digits and precomputed factorials.
+
+/*
+ Intuition/Explanation:
+ Instead of generating all permutations (which takes O(N!) time), we can determine the k-th permutation mathematically.
+ For `n` numbers, there are `(n - 1)!` permutations starting with each of the `n` digits.
+ We can find the first digit by calculating `(k - 1) / (n - 1)!`. This gives the index in the sorted list of available digits.
+ After picking the digit, we update `k = (k - 1) % (n - 1)!` and repeat the process for the next digit using `(n - 2)!`.
+ We maintain an array of available digits `[1, 2, ..., n]` and remove digits as they are picked to form the result.
+
+ Time Complexity: O(N^2), where N is the number of digits. We iterate N times, and removing an element 
+ from the middle of an array takes O(N) time.
+ Space Complexity: O(N) to store the list of available digits and precomputed factorials.
+*/
 
 class Solution {
     func getPermutation(_ n: Int, _ k: Int) -> String {

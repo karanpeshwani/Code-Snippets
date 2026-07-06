@@ -1,9 +1,11 @@
 // 2503-Maximum-Number-of-Points-From-Grid-Queries.swift
 // 2503. Maximum Number of Points From Grid Queries
 // https://leetcode.com/problems/maximum-number-of-points-from-grid-queries/
-//
-// Time Complexity: O(M * N * log(M * N) + Q log Q) where M, N are dimensions of the grid, and Q is the number of queries.
-// Space Complexity: O(M * N + Q) for the priority queue and result array.
+
+/*
+ Time Complexity: O(M * N * log(M * N) + Q log Q) where M, N are dimensions of the grid, and Q is the number of queries.
+ Space Complexity: O(M * N + Q) for the priority queue and result array.
+*/
 
 import Collections
 
