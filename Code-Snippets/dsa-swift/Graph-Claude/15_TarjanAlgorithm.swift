@@ -85,7 +85,6 @@ func findBridges(graph: [[Int]], vertexCount: Int) -> [(Int, Int)] {
 
                 // BRIDGE CHECK: If child can't reach node or above → bridge
                 // low[neighbor] > disc[node] means no back edge from neighbor's
-                // subtree can reach node or any ancestor of node
                 if low[neighbor] > disc[node] {
                     bridges.append((node, neighbor))
                 }
