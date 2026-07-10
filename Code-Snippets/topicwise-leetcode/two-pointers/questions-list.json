@@ -1,0 +1,122 @@
+[
+  {
+    "number-name": "42-Trapping Rain Water",
+    "url": "https://leetcode.com/problems/trapping-rain-water/",
+    "difficulty": "Hard",
+    "isPremium": false
+  },
+  {
+    "number-name": "295-Find Median from Data Stream",
+    "url": "https://leetcode.com/problems/find-median-from-data-stream/",
+    "difficulty": "Hard",
+    "isPremium": false
+  },
+  {
+    "number-name": "719-Find K-th Smallest Pair Distance",
+    "url": "https://leetcode.com/problems/find-k-th-smallest-pair-distance/",
+    "difficulty": "Hard",
+    "isPremium": false
+  },
+  {
+    "number-name": "272-Closest Binary Search Tree Value II",
+    "url": "https://leetcode.com/problems/closest-binary-search-tree-value-ii/",
+    "difficulty": "Hard",
+    "isPremium": true
+  },
+  {
+    "number-name": "1793-Maximum Score of a Good Subarray",
+    "url": "https://leetcode.com/problems/maximum-score-of-a-good-subarray/",
+    "difficulty": "Hard",
+    "isPremium": false
+  },
+  {
+    "number-name": "2035-Partition Array Into Two Arrays to Minimize Sum Difference",
+    "url": "https://leetcode.com/problems/partition-array-into-two-arrays-to-minimize-sum-difference/",
+    "difficulty": "Hard",
+    "isPremium": false
+  },
+  {
+    "number-name": "1537-Get the Maximum Score",
+    "url": "https://leetcode.com/problems/get-the-maximum-score/",
+    "difficulty": "Hard",
+    "isPremium": false
+  },
+  {
+    "number-name": "1755-Closest Subsequence Sum",
+    "url": "https://leetcode.com/problems/closest-subsequence-sum/",
+    "difficulty": "Hard",
+    "isPremium": false
+  },
+  {
+    "number-name": "2193-Minimum Number of Moves to Make Palindrome",
+    "url": "https://leetcode.com/problems/minimum-number-of-moves-to-make-palindrome/",
+    "difficulty": "Hard",
+    "isPremium": false
+  },
+  {
+    "number-name": "1147-Longest Chunked Palindrome Decomposition",
+    "url": "https://leetcode.com/problems/longest-chunked-palindrome-decomposition/",
+    "difficulty": "Hard",
+    "isPremium": false
+  },
+  {
+    "number-name": "1697-Checking Existence of Edge Length Limited Paths",
+    "url": "https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/",
+    "difficulty": "Hard",
+    "isPremium": false
+  },
+  {
+    "number-name": "2472-Maximum Number of Non-overlapping Palindrome Substrings",
+    "url": "https://leetcode.com/problems/maximum-number-of-non-overlapping-palindrome-substrings/",
+    "difficulty": "Hard",
+    "isPremium": false
+  },
+  {
+    "number-name": "2122-Recover the Original Array",
+    "url": "https://leetcode.com/problems/recover-the-original-array/",
+    "difficulty": "Hard",
+    "isPremium": false
+  },
+  {
+    "number-name": "466-Count The Repetitions",
+    "url": "https://leetcode.com/problems/count-the-repetitions/",
+    "difficulty": "Hard",
+    "isPremium": false
+  },
+  {
+    "number-name": "2503-Maximum Number of Points From Grid Queries",
+    "url": "https://leetcode.com/problems/maximum-number-of-points-from-grid-queries/",
+    "difficulty": "Hard",
+    "isPremium": false
+  },
+  {
+    "number-name": "2972-Count the Number of Incremovable Subarrays II",
+    "url": "https://leetcode.com/problems/count-the-number-of-incremovable-subarrays-ii/",
+    "difficulty": "Hard",
+    "isPremium": false
+  },
+  {
+    "number-name": "1782-Count Pairs Of Nodes",
+    "url": "https://leetcode.com/problems/count-pairs-of-nodes/",
+    "difficulty": "Hard",
+    "isPremium": false
+  },
+  {
+    "number-name": "321-Create Maximum Number",
+    "url": "https://leetcode.com/problems/create-maximum-number/",
+    "difficulty": "Hard",
+    "isPremium": false
+  },
+  {
+    "number-name": "2565-Subsequence With the Minimum Score",
+    "url": "https://leetcode.com/problems/subsequence-with-the-minimum-score/",
+    "difficulty": "Hard",
+    "isPremium": false
+  },
+  {
+    "number-name": "2071-Maximum Number of Tasks You Can Assign",
+    "url": "https://leetcode.com/problems/maximum-number-of-tasks-you-can-assign/",
+    "difficulty": "Hard",
+    "isPremium": false
+  }
+]
