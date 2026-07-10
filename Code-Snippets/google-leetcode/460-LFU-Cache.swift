@@ -1,154 +1,137 @@
-//
-//  LFU-Cache.swift
-//  Code-Snippets
-//
-//  Created by Karan Peshwani on 24/06/26.
-//
+// 460. LFU Cache
+// https://leetcode.com/problems/lfu-cache/description/
 
-import Foundation
+/*
+ Intuition:
+ We need O(1) time for both `get` and `put`. This requires combining a hash map for O(1) key lookups
+ with a mechanism that can track and evict the Least Frequently Used key in O(1) time too.
 
-class Node: Hashable {
+ The key insight: group keys by their frequency count. For each frequency, maintain a doubly linked list
+ of keys with that frequency, ordered by recency (most recently used at the head, least recently used at
+ the tail). This handles ties between keys sharing the same frequency (evict the LRU one among them).
+
+ We maintain:
+ 1. `keyToNode`: key -> Node (Node holds key, value, and frequency), for O(1) access to any key's data.
+ 2. `freqToList`: frequency -> doubly linked list of Nodes with that frequency, for O(1) grouping.
+ 3. `minFreq`: tracks the current minimum frequency across all keys, so eviction is O(1)
+    (just pop the tail of freqToList[minFreq]).
+
+ On `get`/`put` (update), a key's node is unlinked from its current frequency list and relinked
+ at the head of the (freq + 1) list. If the old list becomes empty and it was the minFreq list,
+ minFreq is incremented.
+
+ On `put` (insert) when at capacity, we evict the tail node of freqToList[minFreq] (the LFU, and
+ among ties, LRU, key), then insert the new key with frequency 1, resetting minFreq to 1.
+
+ Time Complexity: O(1) for both `get` and `put`.
+ - All operations (dictionary lookups, linked list insert/remove) are O(1).
+ Space Complexity: O(capacity)
+ - We store at most `capacity` nodes across keyToNode and the frequency lists.
+ */
+
+class Node {
     let key: Int
-    var val: Int
+    var value: Int
     var freq: Int
+    var prev: Node?
     var next: Node?
     
-    // CRITICAL: Swift uses ARC. Using 'weak' prevents strong reference cycles
-    // and ensures memory doesn't leak when nodes are removed.
-    weak var prev: Node?
-    
-    init(key: Int, val: Int) {
+    init(_ key: Int, _ value: Int) {
         self.key = key
-        self.val = val
+        self.value = value
         self.freq = 1
-    }
-    
-    // Equatable
-    static func == (lhs: Node, rhs: Node) -> Bool {
-        return lhs.key == rhs.key  // define what makes two Nodes "equal"
-    }
-
-    // Hashable
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(key)  // combine the properties that define equality
     }
 }
 
 class DLinkedList {
-    // Using explicit head and tail dummy nodes is safer in Swift
-    // to avoid initialization headaches with self-referencing nodes.
     private let head: Node
     private let tail: Node
-    private(set) var size: Int = 0
+    private(set) var count: Int = 0
     
     init() {
-        head = Node(key: -1, val: -1)
-        tail = Node(key: -1, val: -1)
+        head = Node(-1, -1)
+        tail = Node(-1, -1)
         head.next = tail
         tail.prev = head
     }
     
-    /// Appends the node to the head of the linked list (Most Recently Used).
-    func append(_ node: Node) {
-        node.next = head.next
+    var isEmpty: Bool { count == 0 }
+    
+    func addToHead(_ node: Node) {
         node.prev = head
-        
+        node.next = head.next
         head.next?.prev = node
         head.next = node
-        size += 1
+        count += 1
     }
     
-    /// Removes the referenced node.
-    /// If no node is provided, removes the node right before the tail (Least Recently Used).
-    @discardableResult
-    func pop(_ node: Node? = nil) -> Node? {
-        guard size > 0 else { return nil }
-        
-        // If node is nil, grab the one right before the tail dummy node
-        guard let nodeToRemove = node ?? tail.prev, nodeToRemove !== head else {
-            return nil
-        }
-        
-        nodeToRemove.prev?.next = nodeToRemove.next
-        nodeToRemove.next?.prev = nodeToRemove.prev
-        size -= 1
-        
-        // Sever ties to ensure clean deallocation
-        nodeToRemove.next = nil
-        nodeToRemove.prev = nil
-        
-        return nodeToRemove
+    func remove(_ node: Node) {
+        node.prev?.next = node.next
+        node.next?.prev = node.prev
+        node.prev = nil
+        node.next = nil
+        count -= 1
+    }
+    
+    func removeTail() -> Node? {
+        guard count > 0, let node = tail.prev else { return nil }
+        remove(node)
+        return node
     }
 }
 
 class LFUCache {
-    private let capacity: Int
-    private var size: Int = 0
-    private var minFreq: Int = 0
-    
-    private var nodeMap: [Int: Node] = [:]
-    private var freqMap: [Int: DLinkedList] = [:]
+    private var capacity: Int
+    private var minFreq: Int
+    private var keyToNode: [Int: Node]
+    private var freqToList: [Int: DLinkedList]
     
     init(_ capacity: Int) {
         self.capacity = capacity
+        self.minFreq = 0
+        self.keyToNode = [:]
+        self.freqToList = [:]
     }
     
-    private func update(_ node: Node) {
-        let currentFreq = node.freq
-        
-        // 1. Remove from current frequency list
-        freqMap[currentFreq]?.pop(node)
-        
-        // 2. Check if we need to increment minFreq
-        if minFreq == currentFreq, let list = freqMap[currentFreq], list.size == 0 {
+    private func touch(_ node: Node) {
+        let oldFreq = node.freq
+        freqToList[oldFreq]?.remove(node)
+        if freqToList[oldFreq]?.isEmpty == true && minFreq == oldFreq {
             minFreq += 1
         }
         
-        // 3. Increment node frequency and move to new list
         node.freq += 1
-        let newFreq = node.freq
-        
-        if freqMap[newFreq] == nil {
-            freqMap[newFreq] = DLinkedList()
-        }
-        freqMap[newFreq]?.append(node)
+        let newList = freqToList[node.freq] ?? DLinkedList()
+        newList.addToHead(node)
+        freqToList[node.freq] = newList
     }
     
     func get(_ key: Int) -> Int {
-        guard let node = nodeMap[key] else { return -1 }
-        
-        update(node)
-        return node.val
+        guard let node = keyToNode[key] else { return -1 }
+        touch(node)
+        return node.value
     }
     
     func put(_ key: Int, _ value: Int) {
-        if capacity == 0 { return }
+        guard capacity > 0 else { return }
         
-        if let node = nodeMap[key] {
-            // Key exists: update value and frequency
-            node.val = value
-            update(node)
-        } else {
-            // Key is new: Check capacity constraints
-            if size == capacity {
-                // Pop the LRU node from the minimum frequency list
-                if let list = freqMap[minFreq], let lruNode = list.pop() {
-                    nodeMap.removeValue(forKey: lruNode.key)
-                    size -= 1
-                }
-            }
-            
-            // Create and insert the new node
-            let newNode = Node(key: key, val: value)
-            nodeMap[key] = newNode
-            
-            if freqMap[1] == nil {
-                freqMap[1] = DLinkedList()
-            }
-            freqMap[1]?.append(newNode)
-            
-            minFreq = 1
-            size += 1
+        if let node = keyToNode[key] {
+            node.value = value
+            touch(node)
+            return
         }
+        
+        if keyToNode.count == capacity {
+            if let evicted = freqToList[minFreq]?.removeTail() {
+                keyToNode[evicted.key] = nil
+            }
+        }
+        
+        let node = Node(key, value)
+        keyToNode[key] = node
+        let list = freqToList[1] ?? DLinkedList()
+        list.addToHead(node)
+        freqToList[1] = list
+        minFreq = 1
     }
 }
