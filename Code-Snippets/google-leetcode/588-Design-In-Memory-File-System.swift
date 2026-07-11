@@ -30,7 +30,7 @@ class FileSystem {
     private func traverse(_ path: String) -> Node {
         var curr = root
         // We avoid empty components which come from spliting paths like "/a/b/c"
-        let components = path.split(separator: "/").filter { !$0.isEmpty }
+        let components = path.split(separator: "/").filter { !$0.isEmpty }   //IMPORTANT
         
         for component in components {
             let name = String(component)
