@@ -6,12 +6,12 @@
 
 ## 1. Array
 
-| Level | Technique / Topic | TC | SC |
-|-------|-------------------|----|----|
+| Level | Technique / Topic | TC | SC | Status 
+|-------|-------------------|----|----|-----|
 | Basic | Traversal, prefix sums, suffix sums | O(n) | O(n) |
 | Basic | Frequency counting | O(n) | O(k) — k unique values |
-| Basic | Kadane's Algorithm (Maximum Subarray) | O(n) | O(1) |
-| Basic | Dutch National Flag (3-way partition) | O(n) | O(1) |
+| Basic | Kadane's Algorithm (Maximum Subarray) | O(n) | O(1) | Imp
+| Basic | Dutch National Flag (3-way partition) | O(n) | O(1) | 
 | Intermediate | Two Pointers (opposite ends) | O(n) | O(1) |
 | Intermediate | Sliding Window (fixed & variable size) | O(n) | O(1)–O(k) |
 | Intermediate | In-place rotation (reversal method) | O(n) | O(1) |
@@ -20,7 +20,7 @@
 | Intermediate | Product of Array Except Self | O(n) | O(1) excl. output |
 | Intermediate | Majority Element (Boyer-Moore Voting) | O(n) | O(1) |
 | Advanced | Trapping Rain Water (two pointers) | O(n) | O(1) |
-| Advanced | Next Permutation | O(n) | O(1) |
+| Advanced | Next Permutation | O(n) | O(1) | Imp
 | Advanced | Jump Game (greedy variants) | O(n) | O(1) |
 | Advanced | Median of Two Sorted Arrays (binary search) | O(log(min(m,n))) | O(1) |
 | Advanced | Sparse Table / RMQ | O(n log n) build · O(1) query | O(n log n) |
