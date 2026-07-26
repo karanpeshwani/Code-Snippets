@@ -15,37 +15,44 @@ class Solution {
         if source == target { return 0 }
 
         let n: Int = routes.count
-        var nodeBusses: [[Int]] = Array(repeating: [], count: 1_000_000)
+        // 1. Replaced the fixed array with a Dictionary
+        var nodeBusses: [Int: [Int]] = [:]
 
         for i in 0..<n {
             for node in routes[i] {
-                nodeBusses[node].append(i)
+                // Safely initialize an empty array if the key doesn't exist yet
+                nodeBusses[node, default: []].append(i)
             }
         }
 
         var queue: Deque<Int> = Deque()
-        var visitedNodes: [Bool] = Array(repeating: false, count: 1_000_000)
+        // 2. Replaced the fixed boolean array with a Set
+        var visitedNodes: Set<Int> = []
         var visitedBusses: [Bool] = Array(repeating: false, count: n)
 
         queue.append(source)
-        visitedNodes[source] = true
+        visitedNodes.insert(source)
         var level = 0
 
         while !queue.isEmpty {
             let size = queue.count
             var nextQueue: Deque<Int> = Deque()
 
-            for i in 0..<size {
+            for _ in 0..<size {
                 let topNode = queue.removeFirst()
 
-                for bus in nodeBusses[topNode] {
+                // Use ?? [] to handle cases where a node might not have any buses
+                // (though logically impossible here based on how we built it, Swift requires it)
+                for bus in nodeBusses[topNode] ?? [] {
                     guard !visitedBusses[bus] else { continue }
                     visitedBusses[bus] = true
 
                     for busNode in routes[bus] {
                         if busNode == target { return level + 1 }
-                        guard !visitedNodes[busNode] else { continue }
-                        visitedNodes[busNode] = true
+                        
+                        // 3. Check for inclusion in the Set rather than indexing an array
+                        guard !visitedNodes.contains(busNode) else { continue }
+                        visitedNodes.insert(busNode)
                         nextQueue.append(busNode)
                     }
                 }

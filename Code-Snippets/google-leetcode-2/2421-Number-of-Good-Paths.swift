@@ -40,6 +40,66 @@ class UnionFind {
     }
 }
 
+// Approach 1: Sorting Edges (Kruskal-like)
+class Solution2 {
+    func numberOfGoodPaths(_ vals: [Int], _ edges: [[Int]]) -> Int {
+        let n = vals.count
+        
+        // 1. Sort edges based on the maximum value of the two nodes they connect
+        let sortedEdges = edges.sorted { edge1, edge2 in
+            let max1 = max(vals[edge1[0]], vals[edge1[1]])
+            let max2 = max(vals[edge2[0]], vals[edge2[1]])
+            return max1 < max2
+        }
+        
+        let dsu = UnionFind(n)
+        // Each individual node is a valid good path of length 1, so we start with `n`
+        var goodPaths = n 
+        
+        // `count[i]` will track the number of nodes that share the MAXIMUM value 
+        // in the component where `i` is the root.
+        var count = Array(repeating: 1, count: n)
+        
+        // 2 & 3. Iterate through sorted edges and perform unions
+        for edge in sortedEdges {
+            let u = edge[0]
+            let v = edge[1]
+            
+            let rootU = dsu.find(u)
+            let rootV = dsu.find(v)
+            
+            if rootU != rootV {
+                let maxU = vals[rootU]
+                let maxV = vals[rootV]
+                
+                // 4. Count the good paths and dynamically update the root to maintain max values
+                if maxU == maxV {
+                    // Both components have the same max value.
+                    // The number of new paths formed is the product of max value nodes in each component.
+                    goodPaths += count[rootU] * count[rootV]
+                    
+                    // Union and combine the counts
+                    dsu.parent[rootU] = rootV 
+                    count[rootV] += count[rootU]
+                } else if maxU > maxV {
+                    // Make rootU the parent of rootV so that the root's value (vals[root]) 
+                    // always correctly represents the max value of the component.
+                    dsu.parent[rootV] = rootU 
+                    // We don't change count[rootU] because the max value nodes from V are smaller
+                } else {
+                    // Make rootV the parent of rootU
+                    dsu.parent[rootU] = rootV
+                    // We don't change count[rootV] because the max value nodes from U are smaller
+                }
+            }
+        }
+        
+        return goodPaths
+    }
+}
+
+
+//Approach 2
 class Solution {
     func numberOfGoodPaths(_ vals: [Int], _ edges: [[Int]]) -> Int {
         let n = vals.count
