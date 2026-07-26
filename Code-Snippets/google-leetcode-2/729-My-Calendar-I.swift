@@ -3,30 +3,19 @@
 
 /*
  Here is the breakdown of the time and space complexity for this Dynamic Segment Tree solution.
+ Let N be the number of events (calls to book), and M be the maximum possible time range (10^9).
+ Time Complexity: O(N log M) overall
+ Per book operation: O(log M)
+ Why?
+ The maximum depth of our segment tree is bounded by the halving of the time range. Since we start with a range of 10^9 and split it in half at each level, the maximum depth of the tree is log2(10^9) ≈ 30 levels.
+ During both query and update, at any given level of the tree, we visit a maximum of 4 nodes (because the requested range can span across the midpoint, forcing us to check both the left and right children). Since we only go down at most 30 levels, a single book operation takes O(log M) time. For N bookings, the total time is O(N log M).
+ Space Complexity: O(N log M) overall
+ Why?
+ If we built a standard segment tree array for a range of 10^9, we would need 4 × 10^9 nodes, which would cause a massive Memory Limit Exceeded (MLE) error.
+ Because we are using a Dynamic Segment Tree, we only create nodes when we need them.
+ Every time we call update, we traverse down the tree from the root to the exact range interval. This path has a maximum length of log2(M) ≈ 30. Therefore, a single book operation will dynamically instantiate at most O(log M) new nodes.
+ If we process N bookings, we will create a maximum of N × log2(M) nodes. In LeetCode's My Calendar I, N ≤ 1000. This means in the absolute worst-case scenario, we only create about 1000 × 30 = 30,000 nodes. This is extremely memory efficient and easily passes the memory limits.
 
- Let **$N$** be the number of events (calls to `book`), and **$M$** be the maximum possible time range ($10^9$).
-
- ### Time Complexity: $O(N \log M)$ overall
-
- * **Per `book` operation:** $O(\log M)$
-
- **Why?**
- The maximum depth of our segment tree is bounded by the halving of the time range. Since we start with a range of $10^9$ and split it in half at each level, the maximum depth of the tree is $\log_2(10^9) \approx 30$ levels.
-
- During both `query` and `update`, at any given level of the tree, we visit a maximum of 4 nodes (because the requested range can span across the midpoint, forcing us to check both the left and right children). Since we only go down at most 30 levels, a single `book` operation takes $O(\log M)$ time. For $N$ bookings, the total time is $O(N \log M)$.
-
- ### Space Complexity: $O(N \log M)$ overall
-
- **Why?**
- If we built a standard segment tree array for a range of $10^9$, we would need $4 \times 10^9$ nodes, which would cause a massive Memory Limit Exceeded (MLE) error.
-
- Because we are using a **Dynamic Segment Tree**, we only create nodes when we need them.
-
- * Every time we call `update`, we traverse down the tree from the root to the exact range interval.
- * This path has a maximum length of $\log_2(M) \approx 30$.
- * Therefore, a single `book` operation will dynamically instantiate at most $O(\log M)$ new nodes.
-
- If we process $N$ bookings, we will create a maximum of $N \times \log_2(M)$ nodes. In LeetCode's *My Calendar I*, $N \le 1000$. This means in the absolute worst-case scenario, we only create about $1000 \times 30 = 30,000$ nodes. This is extremely memory efficient and easily passes the memory limits.
 */
 
 class MyCalendar {

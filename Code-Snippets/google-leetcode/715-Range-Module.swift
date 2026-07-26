@@ -13,129 +13,158 @@
    - N is the number of disjoint ranges. The array stores at most O(N) intervals.
 */
 
-class RangeModule {
-    
-    struct Interval {
-        var left: Int
-        var right: Int
+class SegmentTree {
+
+    private class Node {
+        var start: Int
+        var end: Int
+        var tracked: Bool
+        var left: Node?
+        var right: Node?
+        
+        init(_ start: Int, _ end: Int, _ tracked: Bool = false) {
+            self.start = start
+            self.end = end
+            self.tracked = tracked
+        }
     }
-    
-    // Ordered list of disjoint intervals
-    private var intervals = [Interval]()
+
+    private var root: Node
+
+    init(_ start: Int, _ end: Int) {
+        self.root = Node(start, end)
+    }
+
+    func addRange(_ start: Int, _ end: Int) {
+        // Edge case: when left == right, range is invalid for this problem
+        self.addRange(start, end, root)
+    }
+
+    private func addRange(_ start: Int, _ end: Int, _ currentNode: Node) {
+        // 1. Current node is completely covered by the update interval
+        if start <= currentNode.start && currentNode.end <= end {
+            currentNode.tracked = true
+            // Discard children as the entire range is now uniformly true
+            currentNode.left = nil
+            currentNode.right = nil
+            return
+        }
+        
+        // 2. Optimization: If the whole node is already true, adding a sub-range changes nothing
+        if currentNode.tracked {
+            return
+        }
+        
+        let mid = currentNode.start + (currentNode.end - currentNode.start) / 2
+        
+        // Lazy instantiation: Create children if they don't exist and pass down the current state
+        if currentNode.left == nil {
+            currentNode.left = Node(currentNode.start, mid, currentNode.tracked)
+        }
+        if currentNode.right == nil {
+            currentNode.right = Node(mid + 1, currentNode.end, currentNode.tracked)
+        }
+        
+        // 3. Recurse down to children
+        if start <= mid {
+            addRange(start, end, currentNode.left!)
+        }
+        if end > mid {
+            addRange(start, end, currentNode.right!)
+        }
+        
+        // 4. Update current node based on children's states
+        currentNode.tracked = currentNode.left!.tracked && currentNode.right!.tracked
+    }
+
+    func removeRange(_ start: Int, _ end: Int) {
+        self.removeRange(start, end, root)
+    }
+
+    private func removeRange(_ start: Int, _ end: Int, _ currentNode: Node) {
+        // 1. Current node is completely covered by the removal interval
+        if start <= currentNode.start && currentNode.end <= end {
+            currentNode.tracked = false
+            // Discard children as the entire range is now uniformly false
+            currentNode.left = nil
+            currentNode.right = nil
+            return
+        }
+        
+        // 2. Optimization: If the node is already completely false, removing a sub-range changes nothing
+        if !currentNode.tracked && currentNode.left == nil {
+            return
+        }
+        
+        let mid = currentNode.start + (currentNode.end - currentNode.start) / 2
+        
+        // Lazy instantiation
+        if currentNode.left == nil {
+            currentNode.left = Node(currentNode.start, mid, currentNode.tracked)
+        }
+        if currentNode.right == nil {
+            currentNode.right = Node(mid + 1, currentNode.end, currentNode.tracked)
+        }
+        
+        // 3. Recurse down to children
+        if start <= mid {
+            removeRange(start, end, currentNode.left!)
+        }
+        if end > mid {
+            removeRange(start, end, currentNode.right!)
+        }
+        
+        // 4. Update current node based on children's states
+        currentNode.tracked = currentNode.left!.tracked && currentNode.right!.tracked
+    }
+
+    func queryRange(_ start: Int, _ end: Int) -> Bool {
+        return self.queryRange(start, end, root)
+    }
+
+    private func queryRange(_ start: Int, _ end: Int, _ currentNode: Node) -> Bool {
+        // 1. Current node is completely covered by the query interval
+        if start <= currentNode.start && currentNode.end <= end {
+            return currentNode.tracked
+        }
+        
+        // 2. If it has no children, its `tracked` state uniformly applies to all its sub-intervals
+        if currentNode.left == nil {
+            return currentNode.tracked
+        }
+        
+        let mid = currentNode.start + (currentNode.end - currentNode.start) / 2
+        var isTracked = true
+        
+        // 3. Recurse down and combine results
+        if start <= mid {
+            isTracked = isTracked && queryRange(start, end, currentNode.left!)
+        }
+        if end > mid {
+            isTracked = isTracked && queryRange(start, end, currentNode.right!)
+        }
+        
+        return isTracked
+    }
+}
+
+class RangeModule {
+
+    var segmentTree: SegmentTree
 
     init() {
-        // Initialized empty
+        self.segmentTree = SegmentTree(1, 1_000_000_000)
     }
     
     func addRange(_ left: Int, _ right: Int) {
-        var left = left
-        var right = right
-        
-        // Find indices of intervals that need to be merged
-        let startIdx = lowerBoundRight(left) // first interval with right >= left
-        let endIdx = upperBoundLeft(right)   // first interval with left > right
-        
-        if startIdx < endIdx {
-            left = min(left, intervals[startIdx].left)
-            right = max(right, intervals[endIdx - 1].right)
-            intervals.replaceSubrange(startIdx..<endIdx, with: [Interval(left: left, right: right)])
-        } else {
-            intervals.insert(Interval(left: left, right: right), at: startIdx)
-        }
+        segmentTree.addRange(left, right - 1)
     }
     
     func queryRange(_ left: Int, _ right: Int) -> Bool {
-        let idx = upperBoundLeft(left)
-        // If there's an interval covering left, it must be exactly before the first interval where left > left
-        if idx > 0 {
-            let interval = intervals[idx - 1]
-            if interval.left <= left && interval.right >= right {
-                return true
-            }
-        }
-        return false
+        return segmentTree.queryRange(left, right - 1)
     }
     
     func removeRange(_ left: Int, _ right: Int) {
-        let startIdx = upperBoundRight(left) // first interval with right > left
-        let endIdx = lowerBoundLeft(right)   // first interval with left >= right
-        
-        guard startIdx < endIdx else { return }
-        
-        var newIntervals = [Interval]()
-        
-        let first = intervals[startIdx]
-        if first.left < left {
-            newIntervals.append(Interval(left: first.left, right: left))
-        }
-        
-        let last = intervals[endIdx - 1]
-        if last.right > right {
-            newIntervals.append(Interval(left: right, right: last.right))
-        }
-        
-        intervals.replaceSubrange(startIdx..<endIdx, with: newIntervals)
-    }
-    
-    // MARK: - Binary Search Helpers
-    
-    // First index where interval.right >= target
-    private func lowerBoundRight(_ target: Int) -> Int {
-        var low = 0
-        var high = intervals.count
-        while low < high {
-            let mid = low + (high - low) / 2
-            if intervals[mid].right >= target {
-                high = mid
-            } else {
-                low = mid + 1
-            }
-        }
-        return low
-    }
-
-    // First index where interval.right > target
-    private func upperBoundRight(_ target: Int) -> Int {
-        var low = 0
-        var high = intervals.count
-        while low < high {
-            let mid = low + (high - low) / 2
-            if intervals[mid].right > target {
-                high = mid
-            } else {
-                low = mid + 1
-            }
-        }
-        return low
-    }
-    
-    // First index where interval.left >= target
-    private func lowerBoundLeft(_ target: Int) -> Int {
-        var low = 0
-        var high = intervals.count
-        while low < high {
-            let mid = low + (high - low) / 2
-            if intervals[mid].left >= target {
-                high = mid
-            } else {
-                low = mid + 1
-            }
-        }
-        return low
-    }
-
-    // First index where interval.left > target
-    private func upperBoundLeft(_ target: Int) -> Int {
-        var low = 0
-        var high = intervals.count
-        while low < high {
-            let mid = low + (high - low) / 2
-            if intervals[mid].left > target {
-                high = mid
-            } else {
-                low = mid + 1
-            }
-        }
-        return low
+        segmentTree.removeRange(left, right - 1)
     }
 }
