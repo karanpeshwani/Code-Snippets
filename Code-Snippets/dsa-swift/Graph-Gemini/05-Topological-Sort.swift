@@ -64,24 +64,38 @@ func topologicalSortBFS(V: Int, adj: [[Int]]) -> [Int] {
 // MARK: - Using Stack + DFS
 func topologicalSortDFS(V: Int, adj: [[Int]]) -> [Int] {
     var visited = Array(repeating: false, count: V)
+    var pathVisited = Array(repeating: false, count: V)
     var stack: [Int] = []
     
-    func dfs(node: Int) {
+    // Returns true if a cycle is found
+    func dfs(node: Int) -> Bool {
         visited[node] = true
+        pathVisited[node] = true
         
         for neighbor in adj[node] {
             if !visited[neighbor] {
-                dfs(node: neighbor)
+                if dfs(node: neighbor) {
+                    return true
+                }
+            } else if pathVisited[neighbor] {
+                // If the neighbor is already visited AND is in the current path, a cycle exists
+                return true
             }
         }
         
+        // Remove the node from the current path before backtracking
+        pathVisited[node] = false
         // Push node to stack only after all its dependencies are resolved
         stack.append(node)
+        return false
     }
     
     for i in 0..<V {
         if !visited[i] {
-            dfs(node: i)
+            if dfs(node: i) {
+                // Cycle detected, topological sort is not possible
+                return []
+            }
         }
     }
     
