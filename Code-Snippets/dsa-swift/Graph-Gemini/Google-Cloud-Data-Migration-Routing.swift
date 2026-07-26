@@ -106,3 +106,94 @@ class SolutionDataMigration {
         return bestBottleneck
     }
 }
+
+// ==========================================
+// Approach 2: Max-Heap Dijkstra (Maximize Bottleneck, Prune by Latency)
+// ==========================================
+// Intuition:
+// Instead of binary search, we can use a Priority Queue (Max-Heap) that always explores paths 
+// with the largest bottleneck bandwidth first.
+// The state is `(bottleneck, latency, node)`. We prioritize maximum bottleneck, and then minimum latency.
+// For pruning, we maintain `minLatency[node]` which tracks the shortest latency used to reach `node`.
+// Since we process in decreasing order of bottleneck, any later path to `node` is only useful 
+// if it has a strictly smaller latency. Otherwise, it's a worse state (smaller bottleneck AND larger latency).
+// The first time we reach the `end` node with `latency <= maxLatency`, we are guaranteed it's the maximum possible bottleneck.
+//
+// Time Complexity: O(E log (V * E)), as we might insert multiple states per node.
+// Space Complexity: O(V * E) for the Priority Queue in the worst case, and O(V) for minLatency array.
+
+struct MaxBottleneckState: Comparable {
+    let bottleneck: Int
+    let latency: Int
+    let node: Int
+    
+    // Sort primarily by highest bottleneck (descending)
+    // Tie-breaker: lowest latency (ascending)
+    static func < (lhs: MaxBottleneckState, rhs: MaxBottleneckState) -> Bool {
+        if lhs.bottleneck != rhs.bottleneck {
+            return lhs.bottleneck > rhs.bottleneck // Maximize bottleneck
+        }
+        return lhs.latency < rhs.latency // Minimize latency
+    }
+}
+
+class SolutionDataMigrationApproach2 {
+    func findMaxBottleneck(network: [[Link]], start: Int, end: Int, maxLatency: Int) -> Int {
+        let n = network.count
+        var pq = Heap<MaxBottleneckState>()
+        
+        // Start with infinite bottleneck since start node doesn't constrain bandwidth
+        pq.insert(MaxBottleneckState(bottleneck: Int.max, latency: 0, node: start))
+        
+        var minLatency = Array(repeating: Int.max, count: n)
+        
+        while let curr = pq.popMin() {
+            let u = curr.node
+            let b = curr.bottleneck
+            let l = curr.latency
+            
+            // First time we reach the end node within maxLatency, it's the max bottleneck
+            if u == end && l <= maxLatency {
+                return b == Int.max ? -1 : b
+            }
+            
+            // Prune strictly worse states
+            if l >= minLatency[u] {
+                continue
+            }
+            minLatency[u] = l
+            
+            for link in network[u] {
+                let nextB = min(b, link.bandwidth)
+                let nextL = l + link.latency
+                
+                // Only enqueue if it doesn't exceed our maxLatency bound globally
+                if nextL <= maxLatency {
+                    pq.insert(MaxBottleneckState(bottleneck: nextB, latency: nextL, node: link.destination))
+                }
+            }
+        }
+        
+        return -1
+    }
+}
+
+/*
+ Can an approach similar to binary search + minimum latency BFS be applied?
+
+ The short answer is no, standard BFS cannot be used here (unless a very specific, rare condition is met).
+
+ Here is why:
+
+ Why 0-1 BFS worked for Problem 3924
+ In problem 3924 (Minimum Threshold Path), we were able to use Binary Search + 0-1 BFS because the "cost" of taking an edge was strictly simplified to either 0 (light edge) or 1 (heavy edge). Because the edge weights are constrained to just 0 and 1, a Deque (0-1 BFS) can perfectly guarantee the shortest path in $O(V+E)$ time.
+
+ Why BFS fails for Google Cloud Data Migration
+ In the Data Migration problem, the "cost" of taking an edge is its latency. Latencies are arbitrary, variable integers (e.g., 5ms, 12ms, 50ms).
+
+ Standard BFS only finds the shortest path in terms of the number of edges. It assumes every edge has an identical weight of 1. If you have one path with 2 edges that takes 100ms total, and another path with 4 edges that takes 10ms total, a standard BFS would incorrectly assume the 2-edge path is "shorter".
+
+ To find the minimum latency path in a graph where edge weights (latencies) vary, you mathematically must use a weighted shortest-path algorithm. Dijkstra's Algorithm (which is essentially a BFS backed by a Priority Queue instead of a standard Queue) is the most efficient choice for this.
+
+ (Note: The only exception where standard BFS would work for the Data Migration problem is if you were guaranteed that every single fiber optic link in the entire graph had the exact same latency, e.g., 1ms).
+ */

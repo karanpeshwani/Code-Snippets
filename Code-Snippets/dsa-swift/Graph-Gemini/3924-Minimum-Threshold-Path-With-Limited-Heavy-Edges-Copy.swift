@@ -4,6 +4,8 @@ import Collections
  3924. Minimum Threshold Path With Limited Heavy Edges
  ==========================================
  
+ https://leetcode.com/problems/minimum-threshold-path-with-limited-heavy-edges/description/
+ 
  Question:
  You are given an undirected weighted graph with n nodes and a list of edges, each with a specific weight.
  You are also provided with a `source` node, a `target` node, and an integer `k`.
@@ -103,5 +105,168 @@ class Solution {
         }
         
         return ans
+    }
+}
+
+
+
+//Approach 2:
+// Define a state to store in our Min-Heap, conforming to Comparable
+struct State: Comparable {
+    let node: Int
+    let cost: Int
+    
+    // We want a Min-Heap based on cost
+    static func < (lhs: State, rhs: State) -> Bool {
+        return lhs.cost < rhs.cost
+    }
+}
+
+class Solution {
+    func minimumThreshold(_ n: Int, _ edges: [[Int]], _ source: Int, _ target: Int, _ k: Int) -> Int {
+        // 1. Build the adjacency list and find the max weight
+        var adj = [[(node: Int, weight: Int)]](repeating: [], count: n)
+        var maxWeight = 0
+        
+        for edge in edges {
+            let u = edge[0]
+            let v = edge[1]
+            let w = edge[2]
+            
+            adj[u].append((node: v, weight: w))
+            adj[v].append((node: u, weight: w))
+            maxWeight = max(maxWeight, w)
+        }
+        
+        // 2. Dijkstra's Algorithm to validate a threshold
+        func isValid(_ threshold: Int) -> Bool {
+            var dist = [Int](repeating: Int.max, count: n)
+            dist[source] = 0
+            
+            var heap = Heap<State>()
+            heap.insert(State(node: source, cost: 0))
+            
+            while let curr = heap.popMin() {
+                let u = curr.node
+                let currentCost = curr.cost
+                
+                // If we found a strictly better path earlier, skip processing
+                if currentCost > dist[u] { continue }
+                
+                // Early exit if we reached the target within our budget
+                if u == target && currentCost <= k { return true }
+                
+                for neighbor in adj[u] {
+                    let v = neighbor.node
+                    let weight = neighbor.weight
+                    
+                    // Edges <= threshold cost 0, edges > threshold cost 1
+                    let edgeCost = weight > threshold ? 1 : 0
+                    let newCost = currentCost + edgeCost
+                    
+                    if newCost < dist[v] {
+                        dist[v] = newCost
+                        heap.insert(State(node: v, cost: newCost))
+                    }
+                }
+            }
+            
+            return dist[target] <= k
+        }
+        
+        // Base check: is the target reachable even if we consider ALL edges as light?
+        if !isValid(maxWeight) { return -1 }
+        
+        // 3. Binary Search for the answer
+        var left = 0
+        var right = maxWeight
+        var ans = -1
+        
+        while left <= right {
+            let mid = left + (right - left) / 2
+            
+            if isValid(mid) {
+                ans = mid        // mid works, see if we can find a strictly smaller threshold
+                right = mid - 1
+            } else {
+                left = mid + 1   // mid failed, we need to allow larger edges
+            }
+        }
+        
+        return ans
+    }
+}
+
+
+
+//Approach 3:
+struct State: Comparable {
+    let threshold: Int
+    let heavyUsed: Int
+    let node: Int
+    
+    // Sort primarily by lowest threshold (ascending)
+    // Tie-breaker: fewest heavy edges used (ascending)
+    static func < (lhs: State, rhs: State) -> Bool {
+        if lhs.threshold != rhs.threshold {
+            return lhs.threshold < rhs.threshold
+        }
+        return lhs.heavyUsed < rhs.heavyUsed
+    }
+}
+
+class Solution {
+    func minimumThreshold(_ n: Int, _ edges: [[Int]], _ source: Int, _ target: Int, _ k: Int) -> Int {
+        // 1. Build adjacency list
+        var adj = [[(v: Int, w: Int)]](repeating: [], count: n)
+        for edge in edges {
+            let u = edge[0]
+            let v = edge[1]
+            let w = edge[2]
+            adj[u].append((v: v, w: w))
+            adj[v].append((v: u, w: w))
+        }
+        
+        var pq = Heap<State>()
+        pq.insert(State(threshold: 0, heavyUsed: 0, node: source))
+        
+        // minHeavy[node] tracks the fewest heavy edges used to reach `node` so far.
+        // Because PQ pops in increasing order of threshold, a later state is only
+        // useful if it uses STRICTLY FEWER heavy edges.
+        var minHeavy = [Int](repeating: Int.max, count: n)
+        
+        while let curr = pq.popMin() {
+            let u = curr.node
+            let t = curr.threshold
+            let h = curr.heavyUsed
+            
+            // First time we hit the target, it's guaranteed to be the minimum threshold
+            if u == target {
+                return t
+            }
+            
+            // Prune strictly worse states
+            if h >= minHeavy[u] {
+                continue
+            }
+            minHeavy[u] = h
+            
+            for neighbor in adj[u] {
+                let v = neighbor.v
+                let w = neighbor.w
+                
+                // Option 1: Treat as a Light Edge
+                // Threshold becomes the max of the current path threshold and this edge
+                pq.insert(State(threshold: max(t, w), heavyUsed: h, node: v))
+                
+                // Option 2: Treat as a Heavy Edge
+                // Threshold stays the same, but we consume 1 allowance
+                if h < k {
+                    pq.insert(State(threshold: t, heavyUsed: h + 1, node: v))
+                }
+            }
+        }
+        
+        return -1
     }
 }
