@@ -19,6 +19,22 @@ struct Post: Codable, Identifiable {
     let body: String
 }
 
+struct User: Codable, Identifiable {
+    let userId: Int
+    let fullName: String
+    let emailAddress: String
+    let avatarURL: String
+    let age: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case userId = "user_id"
+        case fullName = "full_name"
+        case emailAddress = "email" // matches property name, value matches JSON key
+        case avatarURL = "profile_pic_url"
+        case age = "age"
+    }
+}
+
 // MARK: - Networking Service
 // Defines a set of requirements for a networking service.
 // Using a protocol allows us to easily swap out the real network service with a mock one for testing.
